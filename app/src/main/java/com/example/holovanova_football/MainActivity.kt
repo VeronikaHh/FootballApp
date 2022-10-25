@@ -6,6 +6,7 @@ import dagger.hilt.android.HiltAndroidApp
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_Football)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
