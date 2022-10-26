@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/lobbyFragment"
+    android:id="@+id/nav_graph">
+    <fragment
+        android:id="@+id/lobbyFragment"
+        android:name="com.example.holovanova_football.fragments.LobbyFragment"
+        tools:layout="@layout/fragment_lobby" />
+
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="com.example.holovanova_football.fragments.RatingFragment"
+        android:label="fragment_view_balance"
+        tools:layout="@layout/fragment_rating" />
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.holovanova_football.fragments.FavoriteFragment"
+        android:label="fragment_choose_recipient"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.holovanova_football.fragments.SettingsFragment"
+        android:label="fragment_choose_amount"
+        tools:layout="@layout/fragment_settings" />
+
+</navigation>
