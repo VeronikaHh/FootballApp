@@ -2,6 +2,7 @@ package com.example.holovanova_football
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -9,7 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.HiltAndroidApp
 
 class MainActivity : AppCompatActivity() {
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Football)
         super.onCreate(savedInstanceState)
