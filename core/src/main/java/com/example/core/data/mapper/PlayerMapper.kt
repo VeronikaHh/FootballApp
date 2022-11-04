@@ -1,7 +1,7 @@
 package com.example.core.data.mapper
 
-import com.example.core.data.database.entity.PlayerEntity
-import com.example.core.data.model.remote.players.Player
+import com.example.core.data.local.model.PlayerEntity
+import com.example.core.data.remote.model.players.Player
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.PlayerDomain
 import javax.inject.Inject
@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class PlayerMapper @Inject constructor() : Mapper<Player, PlayerEntity, PlayerDomain> {
 
-    override fun mapToEntity(domain: PlayerDomain): PlayerEntity {
+    override fun domainToEntity(domain: PlayerDomain): PlayerEntity {
         return PlayerEntity(
             id = domain.id,
             age = domain.age,
@@ -20,7 +20,7 @@ class PlayerMapper @Inject constructor() : Mapper<Player, PlayerEntity, PlayerDo
         )
     }
 
-    override fun mapToDomain(entity: PlayerEntity): PlayerDomain {
+    override fun entityToDomain(entity: PlayerEntity): PlayerDomain {
         return PlayerDomain(
             id = entity.id,
             age = entity.age,
@@ -31,7 +31,7 @@ class PlayerMapper @Inject constructor() : Mapper<Player, PlayerEntity, PlayerDo
         )
     }
 
-    override fun map(dto: Player): PlayerDomain {
+    override fun dtoToDomain(dto: Player): PlayerDomain {
         return PlayerDomain(
             id = dto.id,
             age = dto.age,

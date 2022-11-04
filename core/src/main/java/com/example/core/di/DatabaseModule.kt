@@ -2,7 +2,7 @@ package com.example.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.core.data.database.FootballDatabase
+import com.example.core.data.local.database.FootballDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

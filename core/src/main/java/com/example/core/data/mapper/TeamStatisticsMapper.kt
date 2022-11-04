@@ -1,8 +1,7 @@
 package com.example.core.data.mapper
 
-import com.example.core.data.database.entity.TeamStatisticsEntity
-import com.example.core.data.model.remote.statistics.TeamStatistics
-import com.example.core.di.MapperModule
+import com.example.core.data.local.model.TeamStatisticsEntity
+import com.example.core.data.remote.model.statistics.TeamStatistics
 import com.example.core.di.MapperModule_ProvideBiggestMapperFactory.provideBiggestMapper
 import com.example.core.di.MapperModule_ProvideFixturesMapperFactory.provideFixturesMapper
 import com.example.core.di.MapperModule_ProvideGoalsMapperFactory.provideGoalsMapper
@@ -15,7 +14,7 @@ import javax.inject.Inject
 
 class TeamStatisticsMapper @Inject constructor() :
     Mapper<TeamStatistics, TeamStatisticsEntity, TeamStatisticsDomain> {
-    override fun mapToDomain(entity: TeamStatisticsEntity): TeamStatisticsDomain {
+    override fun entityToDomain(entity: TeamStatisticsEntity): TeamStatisticsDomain {
         return TeamStatisticsDomain(
             biggest = entity.biggest?.let { provideBiggestMapper(MapperModule()).mapToDomain(entity.biggest) },
             clean_sheet = entity.clean_sheet?.let {
@@ -35,7 +34,7 @@ class TeamStatisticsMapper @Inject constructor() :
         )
     }
 
-    override fun map(dto: TeamStatistics): TeamStatisticsDomain {
+    override fun dtoToDomain(dto: TeamStatistics): TeamStatisticsDomain {
         return TeamStatisticsDomain(
             biggest = dto.biggest?.let { provideBiggestMapper(MapperModule()).map(dto.biggest) },
             clean_sheet = dto.clean_sheet?.let { provideTotalMapper(MapperModule()).map(dto.clean_sheet) },
@@ -47,7 +46,7 @@ class TeamStatisticsMapper @Inject constructor() :
         )
     }
 
-    override fun mapToEntity(domain: TeamStatisticsDomain): TeamStatisticsEntity {
+    override fun domainToEntity(domain: TeamStatisticsDomain): TeamStatisticsEntity {
         return TeamStatisticsEntity(
             biggest = domain.biggest?.let { provideBiggestMapper(MapperModule()).mapToEntity(domain.biggest) },
             clean_sheet = domain.clean_sheet?.let {

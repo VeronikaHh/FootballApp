@@ -1,6 +1,6 @@
 //package com.example.core.data.repository
 //
-//import com.example.core.data.datasource.remote.PlayerRemoteDataSource
+//import com.example.core.data.remote.datasource.PlayerRemoteDataSource
 //import com.example.core.data.model.remote.players.PlayerSquad
 //import com.example.core.data.model.remote.response.Response
 //import javax.inject.Inject

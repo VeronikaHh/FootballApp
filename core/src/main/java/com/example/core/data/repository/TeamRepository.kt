@@ -1,6 +1,6 @@
 //package com.example.core.data.repository
 //
-//import com.example.core.data.database.FootballDatabase
+//import com.example.core.data.local.database.FootballDatabase
 //import com.example.core.data.service.TeamService
 //import javax.inject.Inject
 //

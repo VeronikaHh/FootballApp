@@ -1,13 +1,13 @@
 package com.example.core.data.mapper
 
-import com.example.core.data.database.entity.LeagueEntity
-import com.example.core.data.model.remote.statistics.League
+import com.example.core.data.local.model.LeagueEntity
+import com.example.core.data.remote.model.statistics.League
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.LeagueDomain
 import javax.inject.Inject
 
 class LeagueMapper @Inject constructor() : Mapper<League, LeagueEntity, LeagueDomain> {
-    override fun mapToDomain(entity: LeagueEntity): LeagueDomain {
+    override fun entityToDomain(entity: LeagueEntity): LeagueDomain {
         return LeagueDomain(
             id = entity.id,
             country = entity.country,
@@ -18,7 +18,7 @@ class LeagueMapper @Inject constructor() : Mapper<League, LeagueEntity, LeagueDo
         )
     }
 
-    override fun map(dto: League): LeagueDomain {
+    override fun dtoToDomain(dto: League): LeagueDomain {
         return LeagueDomain(
             id = dto.id,
             country = dto.country,
@@ -29,7 +29,7 @@ class LeagueMapper @Inject constructor() : Mapper<League, LeagueEntity, LeagueDo
         )
     }
 
-    override fun mapToEntity(domain: LeagueDomain): LeagueEntity {
+    override fun domainToEntity(domain: LeagueDomain): LeagueEntity {
         return LeagueEntity(
             id = domain.id,
             country = domain.country,

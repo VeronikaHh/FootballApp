@@ -1,7 +1,7 @@
 package com.example.core.di
 
-import com.example.core.data.service.TeamService
-import com.example.core.data.service.PlayerService
+import com.example.core.data.remote.service.TeamService
+import com.example.core.data.remote.service.PlayerService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
