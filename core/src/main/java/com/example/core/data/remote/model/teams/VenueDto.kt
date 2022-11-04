@@ -1,11 +1,6 @@
-package com.example.core.data.local.model
+package com.example.core.data.remote.model.teams
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity//(tableName = "venue_table")
-data class VenueEntity(
-    @PrimaryKey
+data class VenueDto(
     val id: Int? = null,
     val address: String? = null,
     val capacity: Int? = null,

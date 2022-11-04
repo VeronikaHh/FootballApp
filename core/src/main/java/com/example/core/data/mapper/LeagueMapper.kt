@@ -1,14 +1,14 @@
 package com.example.core.data.mapper
 
 import com.example.core.data.local.model.LeagueEntity
-import com.example.core.data.remote.model.statistics.League
+import com.example.core.data.remote.model.statistics.LeagueDto
 import com.example.core.domain.mapper.Mapper
-import com.example.core.domain.model.LeagueDomain
+import com.example.core.domain.model.League
 import javax.inject.Inject
 
-class LeagueMapper @Inject constructor() : Mapper<League, LeagueEntity, LeagueDomain> {
-    override fun entityToDomain(entity: LeagueEntity): LeagueDomain {
-        return LeagueDomain(
+class LeagueMapper @Inject constructor() : Mapper<LeagueDto, LeagueEntity, League> {
+    override fun entityToDomain(entity: LeagueEntity): League {
+        return League(
             id = entity.id,
             country = entity.country,
             name = entity.name,
@@ -18,8 +18,8 @@ class LeagueMapper @Inject constructor() : Mapper<League, LeagueEntity, LeagueDo
         )
     }
 
-    override fun dtoToDomain(dto: League): LeagueDomain {
-        return LeagueDomain(
+    override fun dtoToDomain(dto: LeagueDto): League {
+        return League(
             id = dto.id,
             country = dto.country,
             name = dto.name,
@@ -29,7 +29,7 @@ class LeagueMapper @Inject constructor() : Mapper<League, LeagueEntity, LeagueDo
         )
     }
 
-    override fun domainToEntity(domain: LeagueDomain): LeagueEntity {
+    override fun domainToEntity(domain: League): LeagueEntity {
         return LeagueEntity(
             id = domain.id,
             country = domain.country,
@@ -39,5 +39,4 @@ class LeagueMapper @Inject constructor() : Mapper<League, LeagueEntity, LeagueDo
             season = domain.season
         )
     }
-
 }

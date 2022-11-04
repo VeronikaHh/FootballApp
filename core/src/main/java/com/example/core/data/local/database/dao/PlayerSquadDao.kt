@@ -1,7 +1,6 @@
 package com.example.core.data.local.database.dao
 
 import androidx.room.*
-import com.example.core.data.local.model.PlayerEntity
 import com.example.core.data.local.model.PlayerSquadEntity
 import com.example.core.data.local.model.TeamEntity
 
@@ -16,7 +15,7 @@ interface PlayerSquadDao {
     fun delete(playerSquadEntity: PlayerSquadEntity)
 
     @Query("SELECT * FROM PlayerSquadEntity")
-    fun getAll(): List<PlayerEntity>
+    fun getAll(): List<PlayerSquadEntity>
 
     @Query("SELECT * FROM PlayerSquadEntity WHERE team Like team")
     fun getPlayerSquadByTeam(team: TeamEntity): PlayerSquadEntity

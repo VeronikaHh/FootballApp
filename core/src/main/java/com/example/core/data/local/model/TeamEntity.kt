@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity
+@Entity//(tableName = "team_name")
 data class TeamEntity constructor(
     @PrimaryKey
     val id: Int? = null,
@@ -13,5 +13,6 @@ data class TeamEntity constructor(
     val founded: Int? = null,
     val logo: String? = null,
     val name: String? = null,
-    val national: Boolean? = null
+    val national: Boolean? = null,
+    val statistics: String? = null
 )

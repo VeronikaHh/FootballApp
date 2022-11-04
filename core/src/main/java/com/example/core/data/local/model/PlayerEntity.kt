@@ -3,7 +3,7 @@ package com.example.core.data.local.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity//(tableName = "player_table")
 data class PlayerEntity constructor(
     @PrimaryKey
     val id: Int? = null,

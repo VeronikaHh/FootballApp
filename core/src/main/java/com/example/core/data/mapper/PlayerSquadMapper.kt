@@ -1,39 +1,34 @@
 package com.example.core.data.mapper
 
 import com.example.core.data.local.model.PlayerSquadEntity
-import com.example.core.data.remote.model.players.PlayerSquad
-import com.example.core.di.MapperModule_ProvidePlayerMapperFactory.providePlayerMapper
-import com.example.core.di.MapperModule_ProvideTeamMapperFactory.provideTeamMapper
+import com.example.core.data.remote.model.players.PlayerSquadDto
 import com.example.core.domain.mapper.Mapper
-import com.example.core.domain.model.PlayerSquadDomain
+import com.example.core.domain.model.PlayerSquad
 import javax.inject.Inject
 
-class PlayerSquadMapper @Inject constructor() :
-    Mapper<PlayerSquad, PlayerSquadEntity, PlayerSquadDomain> {
-    override fun entityToDomain(entity: PlayerSquadEntity): PlayerSquadDomain {
-        return PlayerSquadDomain(
-            team = entity.team?.let { provideTeamMapper(MapperModule()).mapToDomain(it) },
-            players = entity.players?.map {
-                providePlayerMapper(MapperModule()).mapToDomain(it)
-            }
+class PlayerSquadMapper @Inject constructor(
+    private val teamMapper: TeamMapper,
+    private val playerMapper: PlayerMapper
+) :
+    Mapper<PlayerSquadDto, PlayerSquadEntity, PlayerSquad> {
+    override fun entityToDomain(entity: PlayerSquadEntity): PlayerSquad {
+        return PlayerSquad(
+            team = entity.team?.let(teamMapper::entityToDomain),
+            players = entity.players?.map(playerMapper::entityToDomain)
         )
     }
 
-    override fun dtoToDomain(dto: PlayerSquad): PlayerSquadDomain {
-        return PlayerSquadDomain(
-            team = dto.team?.let { provideTeamMapper(MapperModule()).map(it) },
-            players = dto.players?.map {
-                providePlayerMapper(MapperModule()).map(it)
-            }
+    override fun dtoToDomain(dto: PlayerSquadDto): PlayerSquad {
+        return PlayerSquad(
+            team = dto.team?.let(teamMapper::dtoToDomain),
+            players = dto.players?.map(playerMapper::dtoToDomain)
         )
     }
 
-    override fun domainToEntity(domain: PlayerSquadDomain): PlayerSquadEntity {
+    override fun domainToEntity(domain: PlayerSquad): PlayerSquadEntity {
         return PlayerSquadEntity(
-            team = domain.team?.let { provideTeamMapper(MapperModule()).mapToEntity(it) },
-            players = domain.players?.map {
-                providePlayerMapper(MapperModule()).mapToEntity(it)
-            }
+            team = domain.team?.let(teamMapper::domainToEntity),
+            players = domain.players?.map(playerMapper::domainToEntity)
         )
     }
 }

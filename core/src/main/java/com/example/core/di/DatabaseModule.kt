@@ -18,4 +18,8 @@ class DatabaseModule {
     fun providesDatabase(@ApplicationContext context: Context): FootballDatabase =
         Room.databaseBuilder(context, FootballDatabase::class.java, "footballDatabase")
             .build()
+//    @Provides
+//    @Singleton
+//    fun providesGson(@ApplicationContext context: Context): Gson =
+//        Gson().newBuilder().create()
 }

@@ -1,14 +1,14 @@
 package com.example.core.data.mapper
 
 import com.example.core.data.local.model.VenueEntity
-import com.example.core.data.remote.model.teams.Venue
+import com.example.core.data.remote.model.teams.VenueDto
 import com.example.core.domain.mapper.Mapper
-import com.example.core.domain.model.VenueDomain
+import com.example.core.domain.model.Venue
 import javax.inject.Inject
 
-class VenueMapper @Inject constructor(): Mapper<Venue, VenueEntity, VenueDomain> {
-    override fun entityToDomain(entity: VenueEntity): VenueDomain {
-        return VenueDomain(
+class VenueMapper @Inject constructor(): Mapper<VenueDto, VenueEntity, Venue> {
+    override fun entityToDomain(entity: VenueEntity): Venue {
+        return Venue(
             id = entity.id,
             address = entity.address,
             name = entity.name,
@@ -19,8 +19,8 @@ class VenueMapper @Inject constructor(): Mapper<Venue, VenueEntity, VenueDomain>
         )
     }
 
-    override fun dtoToDomain(dto: Venue): VenueDomain {
-        return VenueDomain(
+    override fun dtoToDomain(dto: VenueDto): Venue {
+        return Venue(
             id = dto.id,
             address = dto.address,
             name = dto.name,
@@ -31,7 +31,7 @@ class VenueMapper @Inject constructor(): Mapper<Venue, VenueEntity, VenueDomain>
         )
     }
 
-    override fun domainToEntity(domain: VenueDomain): VenueEntity {
+    override fun domainToEntity(domain: Venue): VenueEntity {
         return VenueEntity(
             id = domain.id,
             address = domain.address,

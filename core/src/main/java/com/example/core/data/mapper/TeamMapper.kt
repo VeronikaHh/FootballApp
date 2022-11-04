@@ -1,14 +1,14 @@
 package com.example.core.data.mapper
 
 import com.example.core.data.local.model.TeamEntity
-import com.example.core.data.remote.model.teams.Team
+import com.example.core.data.remote.model.teams.TeamDto
 import com.example.core.domain.mapper.Mapper
-import com.example.core.domain.model.TeamDomain
+import com.example.core.domain.model.Team
 import javax.inject.Inject
 
-class TeamMapper @Inject constructor() : Mapper<Team, TeamEntity, TeamDomain> {
-    override fun entityToDomain(entity: TeamEntity): TeamDomain {
-        return TeamDomain(
+class TeamMapper @Inject constructor() : Mapper<TeamDto, TeamEntity, Team> {
+    override fun entityToDomain(entity: TeamEntity): Team {
+        return Team(
             id = entity.id,
             code = entity.code,
             country = entity.country,
@@ -19,8 +19,8 @@ class TeamMapper @Inject constructor() : Mapper<Team, TeamEntity, TeamDomain> {
         )
     }
 
-    override fun dtoToDomain(dto: Team): TeamDomain {
-        return TeamDomain(
+    override fun dtoToDomain(dto: TeamDto): Team {
+        return Team(
             id = dto.id,
             code = dto.code,
             country = dto.country,
@@ -31,7 +31,7 @@ class TeamMapper @Inject constructor() : Mapper<Team, TeamEntity, TeamDomain> {
         )
     }
 
-    override fun domainToEntity(domain: TeamDomain): TeamEntity {
+    override fun domainToEntity(domain: Team): TeamEntity {
         return TeamEntity(
             id = domain.id,
             code = domain.code,
