@@ -4,8 +4,9 @@ import com.example.core.data.database.entity.StreakEntity
 import com.example.core.data.model.remote.statistics.Streak
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.StreakDomain
+import javax.inject.Inject
 
-class StreakMapper : Mapper<Streak, StreakEntity, StreakDomain> {
+class StreakMapper @Inject constructor() : Mapper<Streak, StreakEntity, StreakDomain> {
     override fun mapToDomain(entity: StreakEntity): StreakDomain {
         return StreakDomain(
             draws = entity.draws,

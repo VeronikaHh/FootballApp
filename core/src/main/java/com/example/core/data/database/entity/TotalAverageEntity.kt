@@ -6,6 +6,6 @@ import com.example.core.data.model.remote.statistics.TotalAverage
 
 @Entity
 data class TotalAverageEntity(
-    val total: Total? = null,
-    val average: Total? = null
+    val total: TotalEntity? = null,
+    val average: TotalEntity? = null
 )

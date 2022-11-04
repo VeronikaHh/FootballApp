@@ -4,9 +4,10 @@ import com.example.core.data.database.entity.ScoreEntity
 import com.example.core.data.model.remote.statistics.Score
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.ScoreDomain
-import com.example.core.domain.model.TotalDomain
+import javax.inject.Inject
 
-class ScoreMapper : Mapper<Score, ScoreEntity, ScoreDomain> {
+class ScoreMapper @Inject constructor() : Mapper<Score, ScoreEntity, ScoreDomain> {
+
     override fun mapToDomain(entity: ScoreEntity): ScoreDomain {
         return ScoreDomain(
             away = entity.away,

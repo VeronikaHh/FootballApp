@@ -4,7 +4,7 @@ import androidx.room.Entity
 
 @Entity
 data class BiggestEntity(
-    val loses: TotalEntity? = null,
+    val loses: ScoreEntity? = null,
     val streak: StreakEntity? = null,
-    val wins: TotalEntity? = null
+    val wins: ScoreEntity? = null
 )

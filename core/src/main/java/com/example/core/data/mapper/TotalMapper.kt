@@ -5,9 +5,10 @@ import com.example.core.data.database.entity.TotalEntity
 import com.example.core.data.model.remote.statistics.Total
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.TotalDomain
+import javax.inject.Inject
 
 
-class TotalMapper : Mapper<Total, TotalEntity, TotalDomain> {
+class TotalMapper @Inject constructor() : Mapper<Total, TotalEntity, TotalDomain> {
     override fun mapToDomain(entity: TotalEntity): TotalDomain {
         return TotalDomain(
             away = entity.away,

@@ -4,9 +4,10 @@ import com.example.core.data.database.entity.PlayerEntity
 import com.example.core.data.model.remote.players.Player
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.PlayerDomain
+import javax.inject.Inject
 
 
-class PlayerMapper : Mapper<Player, PlayerEntity, PlayerDomain> {
+class PlayerMapper @Inject constructor() : Mapper<Player, PlayerEntity, PlayerDomain> {
 
     override fun mapToEntity(domain: PlayerDomain): PlayerEntity {
         return PlayerEntity(

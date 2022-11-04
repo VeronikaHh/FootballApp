@@ -4,8 +4,9 @@ import com.example.core.data.database.entity.TeamEntity
 import com.example.core.data.model.remote.teams.Team
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.TeamDomain
+import javax.inject.Inject
 
-class TeamMapper: Mapper<Team, TeamEntity, TeamDomain> {
+class TeamMapper @Inject constructor() : Mapper<Team, TeamEntity, TeamDomain> {
     override fun mapToDomain(entity: TeamEntity): TeamDomain {
         return TeamDomain(
             id = entity.id,

@@ -1,12 +1,12 @@
 package com.example.core.data.mapper
 
-import com.example.core.data.database.entity.PlayerEntity
 import com.example.core.data.database.entity.VenueEntity
 import com.example.core.data.model.remote.teams.Venue
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.VenueDomain
+import javax.inject.Inject
 
-class VenueMapper : Mapper<Venue, VenueEntity, VenueDomain> {
+class VenueMapper @Inject constructor(): Mapper<Venue, VenueEntity, VenueDomain> {
     override fun mapToDomain(entity: VenueEntity): VenueDomain {
         return VenueDomain(
             id = entity.id,

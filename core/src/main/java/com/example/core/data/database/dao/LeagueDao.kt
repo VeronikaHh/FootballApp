@@ -2,8 +2,6 @@ package com.example.core.data.database.dao
 
 import androidx.room.*
 import com.example.core.data.database.entity.LeagueEntity
-import com.example.core.data.database.entity.TeamEntity
-import com.example.core.data.model.local.League
 
 @Dao
 interface LeagueDao {

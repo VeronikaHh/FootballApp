@@ -15,17 +15,3 @@ data class TeamEntity constructor(
     val name: String? = null,
     val national: Boolean? = null
 )
-
-//fun DatabaseTeamInfo.asDomainModel(): TeamInfo {
-//    return TeamInfo(
-//        id = id,
-//        name = name,
-//        league = league,
-//        leagueLogo = leagueLogo,
-//        country = country,
-//        countryLogo = countryLogo,
-//        venue = venue,
-//        venueLogo = venueLogo,
-//        streak = streak
-//    )
-//}
