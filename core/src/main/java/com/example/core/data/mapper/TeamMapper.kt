@@ -4,9 +4,13 @@ import com.example.core.data.local.model.TeamEntity
 import com.example.core.data.remote.model.teams.TeamDto
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.Team
+import com.example.core.domain.model.TeamStatistics
+import com.google.gson.Gson
 import javax.inject.Inject
 
-class TeamMapper @Inject constructor() : Mapper<TeamDto, TeamEntity, Team> {
+class TeamMapper @Inject constructor(
+    private val gson: Gson
+) : Mapper<TeamDto, TeamEntity, Team> {
     override fun entityToDomain(entity: TeamEntity): Team {
         return Team(
             id = entity.id,
@@ -15,7 +19,10 @@ class TeamMapper @Inject constructor() : Mapper<TeamDto, TeamEntity, Team> {
             founded = entity.founded,
             logo = entity.logo,
             name = entity.name,
-            national = entity.national
+            national = entity.national,
+            statistics = entity.statistics?.let { data ->
+                gson.fromJson(data, TeamStatistics::class.java)
+            }
         )
     }
 
@@ -39,7 +46,8 @@ class TeamMapper @Inject constructor() : Mapper<TeamDto, TeamEntity, Team> {
             founded = domain.founded,
             logo = domain.logo,
             name = domain.name,
-            national = domain.national
+            national = domain.national,
+            statistics = gson.toJson(domain.statistics)
         )
     }
 }
