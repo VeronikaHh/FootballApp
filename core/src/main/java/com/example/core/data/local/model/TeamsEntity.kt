@@ -2,7 +2,7 @@ package com.example.core.data.local.model
 
 import androidx.room.Entity
 
-@Entity//(tableName = "teams_table")
+@Entity(primaryKeys = ["Team.id", "Venue.id"])
 data class TeamsEntity(
 //    @PrimaryKey(autoGenerate = true)
 //    val id: Int,

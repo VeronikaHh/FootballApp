@@ -5,17 +5,17 @@ import com.example.core.data.remote.model.statistics.TeamStatisticsDto
 import com.example.core.data.remote.model.statistics.dtoToDomain
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.TeamStatistics
+import com.google.gson.Gson
 import javax.inject.Inject
 
 class TeamStatisticsMapper @Inject constructor(
     private val leagueMapper: LeagueMapper,
-    private val teamMapper: TeamMapper
+    private val teamMapper: TeamMapper,
+    private val gson: Gson
 ) :
     Mapper<TeamStatisticsDto, TeamEntity, TeamStatistics> {
     override fun entityToDomain(entity: TeamEntity): TeamStatistics {
-        return TeamStatistics(
-            TODO("not implemented")
-        )
+        return gson.fromJson(entity.statistics,TeamStatistics::class.java)
     }
 
     override fun dtoToDomain(dto: TeamStatisticsDto): TeamStatistics {
@@ -39,7 +39,7 @@ class TeamStatisticsMapper @Inject constructor(
             logo = domain.team?.logo,
             name = domain.team?.name,
             national = domain.team?.national,
-            //statistics = domain.
+            statistics = gson.toJson(domain)
         )
     }
 }

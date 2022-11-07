@@ -11,7 +11,10 @@ import com.example.core.data.local.model.*
         TeamEntity::class,
         VenueEntity::class,
         TeamsEntity::class,
-        PlayerSquadEntity::class
+        PlayerSquadEntity::class,
+        LeagueInfoEntity::class,
+        CountryEntity::class,
+        SeasonEntity::class
     ], version = 1
 )
 abstract class FootballDatabase : RoomDatabase() {

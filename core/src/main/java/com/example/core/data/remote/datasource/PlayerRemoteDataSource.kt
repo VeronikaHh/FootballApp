@@ -7,6 +7,6 @@ import com.example.core.data.remote.service.PlayerService
 class PlayerRemoteDataSource(
     private val playerService: PlayerService,
 ) {
-    suspend fun refreshPlayers(): Response<List<PlayerSquadDto>> =
-        playerService.fetchPlayers(1)
+    suspend fun fetchPlayers(teamId: Int): Response<List<PlayerSquadDto>> =
+        playerService.fetchPlayers(teamId)
 }

@@ -1,6 +1,7 @@
 package com.example.core.data.remote.service
 
-import retrofit2.Response
+import com.example.core.data.remote.model.response.Response
+import com.example.core.data.remote.model.statistics.LeagueInfoDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -9,11 +10,11 @@ interface LeagueService {
     @GET("leagues")
     suspend fun fetchLeagues(
         @Query("id") leagueId: Int,
-        ): Response<List<???>>
+        ): Response<List<LeagueInfoDto>>
 
     @GET("leagues")
     suspend fun fetchLeagues(
         @Query("team") teamId: Int,
         @Query("season") season: Int,
-    ): Response<List<???>>
+    ): Response<List<LeagueInfoDto>>
 }

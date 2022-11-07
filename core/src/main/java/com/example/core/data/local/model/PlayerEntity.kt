@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity//(tableName = "player_table")
-data class PlayerEntity constructor(
+data class PlayerEntity(
     @PrimaryKey
-    val id: Int? = null,
+    val id: Int?,
     val age: Int? = null,
     val name: String? = null,
     val number: Int? = null,

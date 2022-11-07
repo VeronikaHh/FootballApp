@@ -4,4 +4,6 @@
     <string name="rating_fragment">rating</string>
     <string name="favorite_fragment">favorite</string>
     <string name="settings_fragment">settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="streak">STREAK</string>
 </resources>

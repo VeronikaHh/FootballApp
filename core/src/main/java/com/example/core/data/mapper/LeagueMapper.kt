@@ -14,6 +14,7 @@ class LeagueMapper @Inject constructor() : Mapper<LeagueDto, LeagueEntity, Leagu
             name = entity.name,
             flag = entity.flag,
             logo = entity.logo,
+            type = entity.type,
             season = entity.season
         )
     }
@@ -25,6 +26,7 @@ class LeagueMapper @Inject constructor() : Mapper<LeagueDto, LeagueEntity, Leagu
             name = dto.name,
             flag = dto.flag,
             logo = dto.logo,
+            type = dto.type,
             season = dto.season
         )
     }
@@ -36,6 +38,7 @@ class LeagueMapper @Inject constructor() : Mapper<LeagueDto, LeagueEntity, Leagu
             name = domain.name,
             flag = domain.flag,
             logo = domain.logo,
+            type = domain.type,
             season = domain.season
         )
     }

@@ -6,5 +6,6 @@ data class League(
     val flag: String? = null,
     val logo: String? = null,
     val name: String? = null,
+    val type: String? = null,
     val season: Int? = null
 )
