@@ -12,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -29,6 +28,9 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setupWithNavController(navController)
+
+
+
 
         CoroutineScope(Dispatchers.IO).launch {
             val result = providesTeamService(provideRetrofit()).fetchTeamStatistics(2021,33,39)

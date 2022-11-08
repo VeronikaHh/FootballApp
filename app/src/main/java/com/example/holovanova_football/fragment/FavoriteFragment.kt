@@ -1,13 +1,14 @@
-package com.example.holovanova_football.fragments
+package com.example.holovanova_football.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.holovanova_football.R
-import com.example.holovanova_football.databinding.FragmentRatingBinding
+import com.example.holovanova_football.databinding.FragmentFavoriteBinding
 
-class RatingFragment : BaseFragment<FragmentRatingBinding>() {
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,10 +18,10 @@ class RatingFragment : BaseFragment<FragmentRatingBinding>() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rating, container, false)
+        return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
-    override fun inflateBinding(layoutInflater: LayoutInflater): FragmentRatingBinding {
-        return FragmentRatingBinding.inflate(layoutInflater)
+    override fun inflateBinding(layoutInflater: LayoutInflater): FragmentFavoriteBinding {
+        return FragmentFavoriteBinding.inflate(layoutInflater)
     }
 }

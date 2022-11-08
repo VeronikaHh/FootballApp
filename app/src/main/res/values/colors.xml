@@ -3,5 +3,8 @@
     <color name="blue">#272643</color>
     <color name="lightBlue">#E3F6F5</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="cyanid">#2C698D</color>
+    <color name="cyanide">#2C698D</color>
+    <color name="streak_red">#CF0000</color>
+    <color name="streak_green">#01B53E</color>
+    <color name="streak_yellow">#F2BD00</color>
 </resources>

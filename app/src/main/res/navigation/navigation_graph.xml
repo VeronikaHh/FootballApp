@@ -7,24 +7,24 @@
     android:id="@+id/nav_graph">
     <fragment
         android:id="@+id/lobbyFragment"
-        android:name="com.example.holovanova_football.fragments.LobbyFragment"
+        android:name="com.example.holovanova_football.fragment.LobbyFragment"
         tools:layout="@layout/fragment_lobby" />
 
     <fragment
         android:id="@+id/ratingFragment"
-        android:name="com.example.holovanova_football.fragments.RatingFragment"
+        android:name="com.example.holovanova_football.fragment.RatingFragment"
         android:label="fragment_view_balance"
         tools:layout="@layout/fragment_rating" />
 
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.holovanova_football.fragments.FavoriteFragment"
+        android:name="com.example.holovanova_football.fragment.FavoriteFragment"
         android:label="fragment_choose_recipient"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.holovanova_football.fragments.SettingsFragment"
+        android:name="com.example.holovanova_football.fragment.SettingsFragment"
         android:label="fragment_choose_amount"
         tools:layout="@layout/fragment_settings" />
 

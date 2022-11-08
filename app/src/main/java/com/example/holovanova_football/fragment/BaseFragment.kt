@@ -1,4 +1,4 @@
-package com.example.holovanova_football.fragments
+package com.example.holovanova_football.fragment
 
 import android.os.Bundle
 import android.util.Log
