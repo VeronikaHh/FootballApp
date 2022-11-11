@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/lobbyFragment"
         android:name="com.example.holovanova_football.fragment.LobbyFragment"
-        tools:layout="@layout/fragment_lobby" />
+        tools:layout="@layout/fragment_lobby" >
+        <action
+            android:id="@+id/action_lobbyFragment_to_teamFragment"
+            app:destination="@id/teamFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/ratingFragment"
@@ -27,5 +31,26 @@
         android:name="com.example.holovanova_football.fragment.SettingsFragment"
         android:label="fragment_choose_amount"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.example.holovanova_football.fragment.TeamFragment"
+        android:label="fragment_team"
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_teamFragment_to_lobbyFragment"
+            app:destination = "@id/lobbyFragment"/>
+       <action
+           android:id="@+id/action_teamFragment_to_playerFragment"
+           app:destination="@id/playerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.example.holovanova_football.fragment.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player">
+        <action
+            android:id="@+id/action_playerFragment_to_teamFragment"
+            app:destination="@id/teamFragment"/>
+    </fragment>
 
 </navigation>

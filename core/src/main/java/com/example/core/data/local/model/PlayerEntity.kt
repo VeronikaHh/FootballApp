@@ -9,6 +9,8 @@ data class PlayerEntity(
     val id: Int?,
     val age: Int? = null,
     val name: String? = null,
+    val firstname: String? = null,
+    val lastname: String? = null,
     val number: Int? = null,
     val photo: String? = null,
     val position: String? = null,

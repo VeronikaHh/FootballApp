@@ -1,30 +1,36 @@
 package com.example.holovanova_football.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.holovanova_football.R
+import com.example.core.domain.model.Player
+import com.example.holovanova_football.databinding.PlayerRvItemBinding
+import com.example.holovanova_football.holder.PlayerHolder
 
-class PlayerAdapter(private val dataSet: String): RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        init {
-        }
+class PlayerAdapter : RecyclerView.Adapter<PlayerHolder>() {
+
+    private val players = mutableListOf<Player>()
+
+    fun setData(playerList: List<Player>) {
+        //TODO add diffUtils
+        players.clear()
+        players.addAll(playerList)
+        notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.streak_win_item, viewGroup, false)
-
-        return ViewHolder(view)
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {
+        val binding =
+            PlayerRvItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        return PlayerHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+    override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
+        holder.bind(players[position])
     }
 
-    override fun getItemCount(): Int {
-        return dataSet.length
-    }
+    override fun getItemCount() = players.count()
 }

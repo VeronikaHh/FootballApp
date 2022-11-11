@@ -29,9 +29,6 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setupWithNavController(navController)
 
-
-
-
         CoroutineScope(Dispatchers.IO).launch {
             val result = providesTeamService(provideRetrofit()).fetchTeamStatistics(2021,33,39)
             val result2 = providesTeamService(provideRetrofit()).fetchTeams(33)

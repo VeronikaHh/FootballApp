@@ -3,8 +3,8 @@
 
     <font
         android:fontStyle="normal"
-        android:font="@font/Karantina_Bold"/>
+        android:font="@font/bold_karantina"/>
     <font
         android:fontStyle="normal"
-        android:font="@font/Karantina_Regular"/>
+        android:font="@font/regular_karantina"/>
 </font-family>
