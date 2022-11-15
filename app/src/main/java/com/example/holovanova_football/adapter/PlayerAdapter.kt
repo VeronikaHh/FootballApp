@@ -2,20 +2,22 @@ package com.example.holovanova_football.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.domain.model.Player
 import com.example.holovanova_football.databinding.PlayerRvItemBinding
 import com.example.holovanova_football.holder.PlayerHolder
+import com.example.holovanova_football.util.PlayerDiffUtil
 
 class PlayerAdapter : RecyclerView.Adapter<PlayerHolder>() {
 
-    private val players = mutableListOf<Player>()
+    private var players = mutableListOf<Player>()
 
-    fun setData(playerList: List<Player>) {
-        //TODO add diffUtils
-        players.clear()
-        players.addAll(playerList)
-        notifyDataSetChanged()
+    fun setData(newPlayerList: List<Player>) {
+        val diffUtil = PlayerDiffUtil(players, newPlayerList)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        players = newPlayerList.toMutableList()
+        diffResults.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerHolder {

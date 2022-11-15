@@ -2,21 +2,27 @@ package com.example.holovanova_football.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.holovanova_football.databinding.StreakItemBinding
 import com.example.holovanova_football.holder.StreakHolder
+import com.example.holovanova_football.util.PlayerDiffUtil
+import com.example.holovanova_football.util.StreakDiffUtil
 
 class StreakAdapter : RecyclerView.Adapter<StreakHolder>() {
 
-    private val streak = mutableListOf<String>()
+    private var streak = mutableListOf<String>()
 
     fun setData(form: String) {
-        //TODO add diffUtils
-        streak.clear()
+        var newStreak: List<String> = emptyList()
         for (i in 0 until form.length) {
-            streak += form[i].toString()
+            newStreak += form[i].toString()
         }
-        notifyDataSetChanged()
+
+        val diffUtil = StreakDiffUtil(streak, newStreak)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        streak = newStreak.toMutableList()
+        diffResults.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StreakHolder {

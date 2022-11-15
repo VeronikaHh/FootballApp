@@ -10,7 +10,7 @@
         android:name="com.example.holovanova_football.fragment.LobbyFragment"
         tools:layout="@layout/fragment_lobby" >
         <action
-            android:id="@+id/action_lobbyFragment_to_teamFragment"
+            android:id="@+id/action_to_teamFragment"
             app:destination="@id/teamFragment" />
     </fragment>
 
@@ -37,10 +37,10 @@
         android:label="fragment_team"
         tools:layout="@layout/fragment_team" >
         <action
-            android:id="@+id/action_teamFragment_to_lobbyFragment"
+            android:id="@+id/action_to_lobbyFragment"
             app:destination = "@id/lobbyFragment"/>
        <action
-           android:id="@+id/action_teamFragment_to_playerFragment"
+           android:id="@+id/action_to_playerFragment"
            app:destination="@id/playerFragment" />
     </fragment>
     <fragment
@@ -49,7 +49,7 @@
         android:label="fragment_player"
         tools:layout="@layout/fragment_player">
         <action
-            android:id="@+id/action_playerFragment_to_teamFragment"
+            android:id="@+id/action_to_teamFragment"
             app:destination="@id/teamFragment"/>
     </fragment>
 

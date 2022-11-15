@@ -1,5 +1,6 @@
 package com.example.core.di
 
+import com.example.core.data.remote.service.LeagueService
 import com.example.core.data.remote.service.TeamService
 import com.example.core.data.remote.service.PlayerService
 import dagger.Module
@@ -46,5 +47,10 @@ object NetworkModule {
     @Provides
     fun providesPlayerService(retrofit: Retrofit): PlayerService {
         return retrofit.create(PlayerService::class.java)
+    }
+
+    @Provides
+    fun providesLeagueService(retrofit: Retrofit): LeagueService {
+        return retrofit.create(LeagueService::class.java)
     }
 }

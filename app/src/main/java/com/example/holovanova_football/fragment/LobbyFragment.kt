@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.holovanova_football.databinding.FragmentLobbyBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LobbyFragment : BaseFragment<FragmentLobbyBinding>() {
 
     override fun inflateBinding(layoutInflater: LayoutInflater): FragmentLobbyBinding {
@@ -18,7 +19,7 @@ class LobbyFragment : BaseFragment<FragmentLobbyBinding>() {
 
         binding.testButton.setOnClickListener {
             findNavController().navigate(
-                LobbyFragmentDirections.actionLobbyFragmentToTeamFragment()
+                LobbyFragmentDirections.actionToTeamFragment()
             )
         }
     }
