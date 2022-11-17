@@ -41,7 +41,8 @@
             app:destination = "@id/lobbyFragment"/>
        <action
            android:id="@+id/action_to_playerFragment"
-           app:destination="@id/playerFragment" />
+           app:destination="@id/playerFragment">
+        </action>
     </fragment>
     <fragment
         android:id="@+id/playerFragment"
@@ -51,6 +52,16 @@
         <action
             android:id="@+id/action_to_teamFragment"
             app:destination="@id/teamFragment"/>
+        <argument
+            android:name="player"
+            app:argType="integer" />
+        <argument
+            android:name="team"
+            app:argType="integer"/>
     </fragment>
-
+    <fragment
+        android:id="@+id/modalBottomSheet"
+        android:name="com.example.holovanova_football.fragment.VenueBottomSheet"
+        tools:layout="@layout/layout_venue" >
+    </fragment>
 </navigation>

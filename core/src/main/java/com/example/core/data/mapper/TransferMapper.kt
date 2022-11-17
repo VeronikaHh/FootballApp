@@ -13,7 +13,7 @@ class TransferMapper @Inject constructor(
         return Transfer(
             date = entity.date,
             type = entity.type,
-            teams = entity.teams?.map(transferTeamMapper::entityToDomain)
+            teams = entity.teams?.let(transferTeamMapper::entityToDomain)
         )
     }
 
@@ -21,7 +21,7 @@ class TransferMapper @Inject constructor(
         return Transfer(
             date = dto.date,
             type = dto.type,
-            teams = dto.teams?.map(transferTeamMapper::dtoToDomain)
+            teams = dto.teams?.let(transferTeamMapper::dtoToDomain)
         )
     }
 
@@ -29,7 +29,7 @@ class TransferMapper @Inject constructor(
         return TransferEntity(
             date = domain.date,
             type = domain.type,
-            teams = domain.teams?.map(transferTeamMapper::domainToEntity)
+            teams = domain.teams?.let(transferTeamMapper::domainToEntity)
         )
     }
 }

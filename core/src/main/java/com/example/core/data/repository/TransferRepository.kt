@@ -9,7 +9,7 @@ class TransferRepository @Inject constructor(
     private val transferDataSource: TransferDataSource,
     private val mapper: PlayerTransfersMapper
 ) {
-    suspend fun fetchPlayers(player:Int): PlayerTransfers {
+    suspend fun getTransfers(player:Int): PlayerTransfers {
         val playerTransfers = transferDataSource.fetchPlayerTransfers(
             player = player
         )

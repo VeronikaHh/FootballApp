@@ -9,7 +9,9 @@ import com.example.holovanova_football.databinding.PlayerRvItemBinding
 import com.example.holovanova_football.holder.PlayerHolder
 import com.example.holovanova_football.util.PlayerDiffUtil
 
-class PlayerAdapter : RecyclerView.Adapter<PlayerHolder>() {
+class PlayerAdapter(
+    private val onClickListener: (Player) -> Unit
+) : RecyclerView.Adapter<PlayerHolder>() {
 
     private var players = mutableListOf<Player>()
 
@@ -31,6 +33,9 @@ class PlayerAdapter : RecyclerView.Adapter<PlayerHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            onClickListener(players[position])
+        }
         holder.bind(players[position])
     }
 

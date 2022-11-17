@@ -25,8 +25,8 @@ interface TeamService {
 
     @GET("teams/statistics")
     suspend fun fetchTeamStatistics(
-        @Query("season") season: Int,
         @Query("team") teamId: Int,
-        @Query("league") leagueId: Int
+        @Query("league") leagueId: Int,
+        @Query("season") season: Int = 2022
     ): Response<TeamStatisticsDto>
 }

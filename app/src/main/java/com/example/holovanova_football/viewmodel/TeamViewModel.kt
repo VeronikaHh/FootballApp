@@ -16,9 +16,10 @@ class TeamViewModel @Inject constructor(
     private val playerRepository: PlayerRepository
 ) : ViewModel() {
 
+    var isDataFetched = false
     private val _playerSquad = MutableStateFlow<PlayerSquad>(PlayerSquad())
     private val _team = MutableStateFlow<Teams>(Teams())
-    private val _teamStatistics = MutableStateFlow<TeamStatistics>(TeamStatistics())
+    private val _teamStatistics = MutableStateFlow<TeamStatistics?>(TeamStatistics())
 
     private val _data = MutableStateFlow<TeamFragmentData>(TeamFragmentData())
     val data: StateFlow<TeamFragmentData>
@@ -41,5 +42,6 @@ class TeamViewModel @Inject constructor(
                 )
             }.collect()
         }
+        isDataFetched = true
     }
 }

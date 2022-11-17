@@ -18,7 +18,7 @@
         android:background="@color/blue"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
-        app:itemIconSize="40dp"
+        app:itemIconSize="45dp"
         app:labelVisibilityMode="unlabeled"
         />
     <androidx.fragment.app.FragmentContainerView

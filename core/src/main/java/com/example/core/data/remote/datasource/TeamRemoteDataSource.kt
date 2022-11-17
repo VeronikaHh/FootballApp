@@ -18,6 +18,6 @@ class TeamRemoteDataSource @Inject constructor(
     suspend fun fetchTeams(league: Int, season: Int): Response<List<TeamInfoDto>> =
         providesTeamService(provideRetrofit()).fetchTeams(league, season)
 
-    suspend fun fetchTeamStatistics(season: Int, teamId: Int, leagueId: Int): Response<TeamStatisticsDto> =
-        providesTeamService(provideRetrofit()).fetchTeamStatistics(season, teamId, leagueId)
+    suspend fun fetchTeamStatistics(teamId: Int, leagueId: Int): Response<TeamStatisticsDto> =
+        providesTeamService(provideRetrofit()).fetchTeamStatistics(teamId, leagueId)
 }

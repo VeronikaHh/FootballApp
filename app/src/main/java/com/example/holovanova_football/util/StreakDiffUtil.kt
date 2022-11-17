@@ -8,13 +8,11 @@ class StreakDiffUtil(
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldList.count()
 
-    override fun getNewListSize(): Int  = newList.count()
+    override fun getNewListSize(): Int = newList.count()
 
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
-    }
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        oldList[oldItemPosition] == newList[newItemPosition]
 
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == (newList[newItemPosition])
-    }
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        oldList[oldItemPosition] == newList[newItemPosition]
 }

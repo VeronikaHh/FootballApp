@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.decode.SvgDecoder
 import coil.load
+import com.example.core.domain.model.Player
+import com.example.holovanova_football.OnClickListener
 import com.example.holovanova_football.adapter.PlayerAdapter
 import com.example.holovanova_football.adapter.StreakAdapter
 import com.example.holovanova_football.databinding.FragmentTeamBinding
@@ -19,26 +23,53 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class TeamFragment : BaseFragment<FragmentTeamBinding>() {
 
-    private val streakAdapter = StreakAdapter()
-    private val playerAdapter = PlayerAdapter()
-
     private val viewModel: TeamViewModel by viewModels()
+
+    private val streakAdapter = StreakAdapter()
+
+    private var playerAdapter = PlayerAdapter() { player ->
+        val playerId = player.id!!
+        val teamId = viewModel.data.value.team?.team?.id!!
+        findNavController().navigate(
+            TeamFragmentDirections.actionToPlayerFragment(playerId, teamId)
+        )
+    }
 
     override fun inflateBinding(layoutInflater: LayoutInflater): FragmentTeamBinding {
         return FragmentTeamBinding.inflate(layoutInflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
 
+        binding.progressBar.visibility = View.VISIBLE
+
         binding.back.setOnClickListener {
-            findNavController().navigate(
-                TeamFragmentDirections.actionToLobbyFragment()
-            )
+            findNavController().navigateUp()
         }
 
-        viewModel.viewModelScope.launch {
+        binding.venueContainer.setOnClickListener {
+            val modalBottomSheet = VenueBottomSheet()
+            modalBottomSheet.show(parentFragmentManager, VenueBottomSheet.TAG)
+        }
+
+        if (viewModel.isDataFetched) {
+            binding.progressBar.visibility = View.GONE
+        }
+
+        binding.streakRv.apply {
+            adapter = streakAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+
+        binding.playerRv.apply {
+            adapter = playerAdapter
+            layoutManager =
+                StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
+        }
+
+        lifecycleScope.launch {
 
             viewModel.data.collect { data ->
 
@@ -56,12 +87,7 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
                 binding.venueName.text = data.team?.venue?.name
                 binding.venuePhoto.load(data.team?.venue?.image)
 
-                binding.streakRv.apply {
-                    data.teamStatistics?.form?.let { streakAdapter.setData(it) }
-                    adapter = streakAdapter
-                    layoutManager =
-                        StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
-                }
+                data.teamStatistics?.form?.let { streakAdapter.setData(it) }
 
                 binding.goalsHome.text =
                     data.teamStatistics?.goals?.`for`?.total?.home?.toInt().toString()
@@ -87,12 +113,7 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
                 binding.lose.text = data.teamStatistics?.biggest?.streak?.loses.toString()
                 binding.draw.text = data.teamStatistics?.biggest?.streak?.draws.toString()
 
-                binding.playerRv.apply {
-                    data.playerSquad?.players?.let { playerAdapter.setData(it) }
-                    adapter = playerAdapter
-                    layoutManager =
-                        StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
-                }
+                data.playerSquad?.players?.let { playerAdapter.setData(it) }
             }
         }
     }

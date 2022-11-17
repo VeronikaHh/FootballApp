@@ -11,7 +11,8 @@ interface PlayerService {
     @GET("players")
     suspend fun fetchPlayerStatistics(
         @Query("id") id: Int,
-        @Query("season") season: Int
+        @Query("team") team: Int,
+        @Query("season") season: Int = 2022
     ): Response<List<PlayerStatisticsDto>>
 
     @GET("players/squads")

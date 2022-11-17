@@ -35,6 +35,11 @@ class PlayerMapper @Inject constructor() : Mapper<PlayerDto, PlayerEntity, Playe
         return Player(
             id = dto.id,
             age = dto.age,
+            firstname = dto.firstname,
+            lastname = dto.lastname,
+            nationality = dto.nationality,
+            height = dto.height,
+            weight = dto.weight,
             name = dto.name,
             number = dto.number,
             photo = dto.photo,

@@ -8,6 +8,7 @@ import com.example.holovanova_football.databinding.PlayerRvItemBinding
 class PlayerHolder(
     val binding: PlayerRvItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(player: Player) {
         binding.playerName.text = player.name
         binding.playerNumber.text = player.number?.toString() ?: "NA"

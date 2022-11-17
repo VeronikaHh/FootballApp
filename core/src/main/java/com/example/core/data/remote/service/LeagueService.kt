@@ -15,6 +15,6 @@ interface LeagueService {
     @GET("leagues")
     suspend fun fetchLeagues(
         @Query("team") teamId: Int,
-        @Query("season") season: Int,
+        @Query("season") season: Int = 2022,
     ): Response<List<LeagueInfoDto>>
 }

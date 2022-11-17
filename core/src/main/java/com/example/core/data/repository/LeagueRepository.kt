@@ -18,7 +18,7 @@ class LeagueRepository @Inject constructor(
     suspend fun getLeague(teamId: Int, season: Int): League? {
         val league = leagueRemoteDataSource.fetchLeagues(
             teamId = teamId,
-            season = season
+            season = 2022
         )
         return league.response[0].league?.let { leagueMapper.dtoToDomain(it) }
     }

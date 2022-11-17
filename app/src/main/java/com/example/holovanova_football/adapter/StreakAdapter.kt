@@ -15,8 +15,8 @@ class StreakAdapter : RecyclerView.Adapter<StreakHolder>() {
 
     fun setData(form: String) {
         var newStreak: List<String> = emptyList()
-        for (i in 0 until form.length) {
-            newStreak += form[i].toString()
+        for (element in form) {
+            newStreak = newStreak + element.toString()
         }
 
         val diffUtil = StreakDiffUtil(streak, newStreak)

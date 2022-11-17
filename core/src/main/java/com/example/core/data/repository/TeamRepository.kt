@@ -14,17 +14,18 @@ class TeamRepository @Inject constructor(
     private val teamStatisticsMapper: TeamStatisticsMapper,
     private val teamsMapper: TeamsMapper
 ){
-    suspend fun getTeamStatistics(teamId: Int): TeamStatistics {
+    suspend fun getTeamStatistics(teamId: Int): TeamStatistics? {
         val league = leagueRemoteDataSource.fetchLeagues(
             teamId = teamId,
             season = 2022
         )
-        val team = remoteDataSource.fetchTeamStatistics(
-            season = 2022,
-            teamId = teamId,
-            leagueId = 39//TODO from league
-        )
-        return teamStatisticsMapper.dtoToDomain(team.response)
+        val team = league.response[0].league?.id?.let {
+            remoteDataSource.fetchTeamStatistics(
+                teamId = teamId,
+                leagueId = it//TODO from league
+            )
+        }
+        return team?.let { teamStatisticsMapper.dtoToDomain(it.response) }
         // TODO save to db
         // return from db
     }

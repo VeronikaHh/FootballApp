@@ -12,6 +12,6 @@ class PlayerRemoteDataSource @Inject constructor(
     suspend fun fetchPlayers(teamId: Int): Response<List<PlayerSquadDto>> =
         providesPlayerService(provideRetrofit()).fetchPlayers(teamId)
 
-    suspend fun fetchPlayerStatistics(id: Int, season: Int): Response<List<PlayerStatisticsDto>> =
-        providesPlayerService(provideRetrofit()).fetchPlayerStatistics(id, season)
+    suspend fun fetchPlayerStatistics(id: Int, team: Int): Response<List<PlayerStatisticsDto>> =
+        providesPlayerService(provideRetrofit()).fetchPlayerStatistics(id, team)
 }
