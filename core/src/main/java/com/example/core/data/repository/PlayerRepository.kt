@@ -15,4 +15,11 @@ class PlayerRepository @Inject constructor(
         )
         return mapper.dtoToDomain(playerSquad.response[0])
     }
+    suspend fun getPlayerStatistics(id: Int, season: Int) {
+        val playerSquad = playerRemoteDataSource.fetchPlayerStatistics(
+            id = id,
+            season = 2022
+        )
+        //TODO: return domain  model (create domain model+player statistics mapper)
+    }
 }

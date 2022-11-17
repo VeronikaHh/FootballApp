@@ -16,7 +16,6 @@ import com.example.holovanova_football.viewmodel.TeamViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
 class TeamFragment : BaseFragment<FragmentTeamBinding>() {
 
@@ -98,6 +97,7 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
         }
     }
 }
+
 //TODO: implement Fragment.navigate function
 //public fun Fragment.navigate(action: String) {
 //    findNavController().navigate(action)

@@ -1,20 +1,16 @@
 package com.example.holovanova_football.adapter
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.holovanova_football.holder.CareerHolder
 
-class CareerAdapter(): RecyclerView.Adapter<CareerAdapter.ViewHolder>()  {
+class CareerAdapter(): RecyclerView.Adapter<CareerHolder>()  {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        init {
-        }
-    }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CareerHolder {
         TODO("Not yet implemented")
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CareerHolder, position: Int) {
         TODO("Not yet implemented")
     }
 

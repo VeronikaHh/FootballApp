@@ -4,8 +4,10 @@
         <item name="android:statusBarColor">@color/lightBlue</item>
         <item name="android:textColor">@color/cyanide</item>
     </style>
-    <style name="Theme.splashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
     <style name="fontStyleSubtitle" parent="@android:style/TextAppearance.Small">
         <item name="android:fontFamily">@font/regular_karantina</item>
