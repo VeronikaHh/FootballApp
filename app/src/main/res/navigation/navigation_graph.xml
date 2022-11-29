@@ -7,25 +7,61 @@
     android:id="@+id/nav_graph">
     <fragment
         android:id="@+id/lobbyFragment"
-        android:name="com.example.holovanova_football.fragments.LobbyFragment"
-        tools:layout="@layout/fragment_lobby" />
+        android:name="com.example.holovanova_football.fragment.LobbyFragment"
+        tools:layout="@layout/fragment_lobby" >
+        <action
+            android:id="@+id/action_to_teamFragment"
+            app:destination="@id/teamFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/ratingFragment"
-        android:name="com.example.holovanova_football.fragments.RatingFragment"
+        android:name="com.example.holovanova_football.fragment.RatingFragment"
         android:label="fragment_view_balance"
         tools:layout="@layout/fragment_rating" />
 
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.holovanova_football.fragments.FavoriteFragment"
+        android:name="com.example.holovanova_football.fragment.FavoriteFragment"
         android:label="fragment_choose_recipient"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.holovanova_football.fragments.SettingsFragment"
+        android:name="com.example.holovanova_football.fragment.SettingsFragment"
         android:label="fragment_choose_amount"
         tools:layout="@layout/fragment_settings" />
-
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.example.holovanova_football.fragment.TeamFragment"
+        android:label="fragment_team"
+        tools:layout="@layout/fragment_team" >
+        <action
+            android:id="@+id/action_to_lobbyFragment"
+            app:destination = "@id/lobbyFragment"/>
+       <action
+           android:id="@+id/action_to_playerFragment"
+           app:destination="@id/playerFragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.example.holovanova_football.fragment.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player">
+        <action
+            android:id="@+id/action_to_teamFragment"
+            app:destination="@id/teamFragment"/>
+        <argument
+            android:name="player"
+            app:argType="integer" />
+        <argument
+            android:name="team"
+            app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/modalBottomSheet"
+        android:name="com.example.holovanova_football.fragment.VenueBottomSheet"
+        tools:layout="@layout/layout_venue" >
+    </fragment>
 </navigation>
