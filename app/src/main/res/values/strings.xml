@@ -34,4 +34,9 @@
     <string name="venue_address">address: </string>
     <string name="venue_surface">surface: </string>
     <string name="venue_capacity">capacity: </string>
+    <string name="compare">compare</string>
+    <string name="battle_click">click to select a team</string>
+    <string name="btn_last_ten">last ten</string>
+    <string name="btn_this_season">this season</string>
+    <string name="btn_last_season">last season</string>
 </resources>

@@ -36,4 +36,10 @@ class TeamRepository @Inject constructor(
         )
         return teamsMapper.dtoToDomain(teams.response[0])
     }
+    suspend fun searchTeam(search: String): List<Teams> {
+        val teams = remoteDataSource.fetchTeams(
+            search = search
+        )
+        return teams.response.map(teamsMapper::dtoToDomain)
+    }
 }

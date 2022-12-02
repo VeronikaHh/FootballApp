@@ -26,14 +26,14 @@ class TeamViewModel @Inject constructor(
         get() = _data
 
     init {
-        collectFlow()
+        collectFlow(33)
     }
 
-    private fun collectFlow() {
+    fun collectFlow(team: Int) {
         viewModelScope.launch {
-            _playerSquad.value = playerRepository.getPlayerSquad(33)
-            _team.value = teamRepository.getTeam(33)
-            _teamStatistics.value = teamRepository.getTeamStatistics(33)
+            _playerSquad.value = playerRepository.getPlayerSquad(team)
+            _team.value = teamRepository.getTeam(team)
+            _teamStatistics.value = teamRepository.getTeamStatistics(team)
             combine(_team, _teamStatistics, _playerSquad) { team, teamStatistics, playerSquad ->
                 _data.value = data.value.copy(
                     team = team,

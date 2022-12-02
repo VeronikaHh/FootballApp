@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/lobby_fragment"
-        style="@style/BigTitleFontStyle"
+        style="@style/PlayerFontRegular"
         android:gravity="center"/>
 
 </FrameLayout>

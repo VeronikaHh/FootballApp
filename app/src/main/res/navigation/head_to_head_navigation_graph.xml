@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/head_to_head_navigation_graph"
+    app:startDestination="@id/compareFragment">
+    <fragment
+        android:id="@+id/compareFragment"
+        android:name="com.example.holovanova_football.fragment.CompareFragment"
+        android:label="fragment_compare"
+        tools:layout="@layout/fragment_compare">
+        <action
+            android:id="@+id/action_to_searchTeamFragment"
+            app:destination="@id/searchTeamFragment" />
+        <action
+            android:id="@+id/action_to_headToHeadFragment"
+            app:destination="@id/headToHeadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchTeamFragment"
+        android:name="com.example.holovanova_football.fragment.SearchTeamFragment"
+        android:label="fragment_search_team"
+        tools:layout="@layout/fragment_search_team">
+        <action
+            android:id="@+id/action_to_compareFragment"
+            app:destination="@id/compareFragment" />
+        <argument
+            android:name="keyName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/headToHeadFragment"
+        android:name="com.example.holovanova_football.fragment.HeadToHeadFragment"
+        tools:layout="@layout/fragment_head_to_head">
+        <argument
+            android:name="firstTeam"
+            app:argType="integer" />
+        <argument
+            android:name="secondTeam"
+            app:argType="integer" />
+    </fragment>
+</navigation>

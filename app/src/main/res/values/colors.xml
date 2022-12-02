@@ -7,4 +7,6 @@
     <color name="streak_red">#CF0000</color>
     <color name="streak_green">#01B53E</color>
     <color name="streak_yellow">#F2BD00</color>
+    <color name="black">#000000</color>
+    <color name="gray">#C3C2CB</color>
 </resources>

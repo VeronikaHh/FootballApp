@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.decode.SvgDecoder
 import coil.load
-import com.example.core.domain.model.Player
-import com.example.holovanova_football.OnClickListener
 import com.example.holovanova_football.adapter.PlayerAdapter
 import com.example.holovanova_football.adapter.StreakAdapter
 import com.example.holovanova_football.databinding.FragmentTeamBinding
@@ -27,8 +24,7 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
 
     private val streakAdapter = StreakAdapter()
 
-    private var playerAdapter = PlayerAdapter() { player ->
-        val playerId = player.id!!
+    private var playerAdapter = PlayerAdapter() { playerId ->
         val teamId = viewModel.data.value.team?.team?.id!!
         findNavController().navigate(
             TeamFragmentDirections.actionToPlayerFragment(playerId, teamId)
