@@ -25,11 +25,10 @@ class SearchTeamFragment : BaseFragment<FragmentSearchTeamBinding>(),
     private val navArgs by navArgs<SearchTeamFragmentArgs>()
 
     private val teamAdapter = TeamAdapter { teamId ->
+        val keyName = navArgs.keyName
         setFragmentResult(
-            navArgs.keyName,
-            bundleOf(
-                "team" to teamId
-            )
+            keyName,
+            bundleOf(keyName to teamId)
         )
         findNavController().navigateUp()
     }

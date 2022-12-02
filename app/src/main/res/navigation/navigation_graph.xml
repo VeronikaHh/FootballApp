@@ -12,23 +12,9 @@
             android:id="@+id/action_to_teamFragment"
             app:destination="@id/teamFragment" />
     </fragment>
-    <navigation android:id="@+id/compare"
-        app:startDestination="@id/head_to_head_navigation_graph">
-        <include app:graph="@navigation/head_to_head_navigation_graph" />
-    </navigation>
-<!--    <fragment-->
-<!--    android:id="@+id/compareFragment"-->
-<!--    android:name="com.example.holovanova_football.fragment.CompareFragment"-->
-<!--    android:label="fragment_compare"-->
-<!--    tools:layout="@layout/fragment_compare">-->
-<!--        <action-->
-<!--            android:id="@+id/action_to_searchTeamFragment"-->
-<!--            app:destination="@id/searchTeamFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_to_headToHeadFragment"-->
-<!--            app:destination="@id/headToHeadFragment"/>-->
-<!--    </fragment>-->
-<!--    TODO: move fragments below to head_to_head_navigation_graph-->
+
+    <include app:graph="@navigation/head_to_head_navigation_graph" />
+
     <fragment
         android:id="@+id/favorite"
         android:name="com.example.holovanova_football.fragment.FavoriteFragment"

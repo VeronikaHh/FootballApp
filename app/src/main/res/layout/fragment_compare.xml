@@ -37,12 +37,11 @@
         style="@style/BigTitleFontStyle"
         android:gravity="center"
         android:padding="100dp"/>
-    <LinearLayout
+    <View
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@color/blue"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/first_container"
@@ -89,6 +88,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/compare"
+        android:enabled="false"
         style="@style/PlayerFontRegular"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

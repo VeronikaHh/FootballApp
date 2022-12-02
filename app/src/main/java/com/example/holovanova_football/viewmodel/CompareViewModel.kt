@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.data.repository.TeamRepository
 import com.example.core.domain.model.Teams
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,16 +16,44 @@ class CompareViewModel @Inject constructor(
     private val teamRepository: TeamRepository
 ) : ViewModel() {
 
-    var isDataFetched = false
+    private val _firstTeamState = MutableStateFlow<SelectedTeamState>(SelectedTeamState.Empty)
+    private val _secondTeamState = MutableStateFlow<SelectedTeamState>(SelectedTeamState.Empty)
+    private val _buttonEnabled = combine(
+        _firstTeamState,
+        _secondTeamState
+    ) { firstTeamState, secondTeamState ->
+        firstTeamState is SelectedTeamState.Selected
+                && secondTeamState is SelectedTeamState.Selected
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
-    private val _team = MutableStateFlow<Teams>(Teams())
-    val data: StateFlow<Teams>
-        get() = _team
+    val firstTeamState: StateFlow<SelectedTeamState>
+        get() = _firstTeamState
 
-    fun collectFlow(team: Int) {
-        viewModelScope.launch {
-            _team.value = teamRepository.getTeam(team)
-        }
-        isDataFetched = true
+    val secondTeamState: StateFlow<SelectedTeamState>
+        get() = _secondTeamState
+
+    val buttonEnabled: StateFlow<Boolean>
+        get() = _buttonEnabled
+
+    fun fetchFirstTeam(teamId: Int) = viewModelScope.launch(Dispatchers.Default) {
+        _firstTeamState.emit(SelectedTeamState.Loading)
+        val teams = fetchTeam(teamId)
+        _firstTeamState.emit(SelectedTeamState.Selected(team = teams))
     }
+
+    fun fetchSecondTeam(teamId: Int) = viewModelScope.launch(Dispatchers.Default) {
+        _secondTeamState.emit(SelectedTeamState.Loading)
+        val teams = fetchTeam(teamId)
+        _secondTeamState.emit(SelectedTeamState.Selected(team = teams))
+    }
+
+    private suspend fun fetchTeam(teamId: Int): Teams {
+        return teamRepository.getTeam(teamId)
+    }
+}
+
+sealed interface SelectedTeamState {
+    object Empty : SelectedTeamState
+    object Loading : SelectedTeamState
+    data class Selected(val team: Teams) : SelectedTeamState
 }

@@ -21,9 +21,6 @@
         android:name="com.example.holovanova_football.fragment.SearchTeamFragment"
         android:label="fragment_search_team"
         tools:layout="@layout/fragment_search_team">
-        <action
-            android:id="@+id/action_to_compareFragment"
-            app:destination="@id/compareFragment" />
         <argument
             android:name="keyName"
             app:argType="string" />
@@ -33,10 +30,10 @@
         android:name="com.example.holovanova_football.fragment.HeadToHeadFragment"
         tools:layout="@layout/fragment_head_to_head">
         <argument
-            android:name="firstTeam"
+            android:name="firstTeamId"
             app:argType="integer" />
         <argument
-            android:name="secondTeam"
+            android:name="secondTeamId"
             app:argType="integer" />
     </fragment>
 </navigation>
