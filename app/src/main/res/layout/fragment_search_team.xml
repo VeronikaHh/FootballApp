@@ -35,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
+                android:text="@string/search_toolbar"
                 style="@style/fontStyleBigSubtitle"/>
         </androidx.appcompat.widget.Toolbar>
         <SearchView
@@ -44,6 +45,9 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_marginEnd="15dp"
             android:layout_marginStart="15dp"
+            android:queryHint="@string/search_hint"
+            android:tooltipText="@string/search_hint"
+            style="@style/fontStyleSubtitle"
             android:background="@drawable/search_border"
             />
         <androidx.recyclerview.widget.RecyclerView
@@ -52,11 +56,27 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="115dp"
             android:fadingEdge="vertical"
-            android:fadingEdgeLength="15dp"
+            android:fadingEdgeLength="10dp"
             android:orientation="vertical"
             android:requiresFadingEdge="vertical"
             android:scrollbars="vertical"
             tools:listitem="@layout/team_rv_item"/>
     </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/cyanide"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/fontStyleBigSubtitle"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
