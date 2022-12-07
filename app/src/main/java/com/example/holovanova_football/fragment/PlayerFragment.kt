@@ -30,17 +30,12 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showProgressBar()
+        initCollectors()
+        initClickListeners()
+    }
 
-        //binding.progressBar.visibility = View.VISIBLE
-
-        binding.back.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
-//        if (playerViewModel.isDataFetched) {
-//            binding.progressBar.visibility = View.GONE
-//        }
-
+    private fun initCollectors() {
         binding.carrerRv.apply {
             adapter = careerAdapter
             layoutManager =
@@ -48,34 +43,54 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
         }
 
         lifecycleScope.launch {
-            
+
             val player = args.player
             val team = args.team
             playerViewModel.collectFlow(player, team)
             playerViewModel.data.collect { data ->
 
-                binding.titleToolbar.text = data.player?.name
-                binding.playerFirstname.text = data.player?.firstname
-                binding.playerLastname.text = data.player?.lastname
+                data.player?.let {
+                    binding.titleToolbar.text = it.name
+                    binding.playerFirstname.text = it.firstname
+                    binding.playerLastname.text = it.lastname
 
-                //TODO: replace hardcoded with strings from resource
-                binding.nationality.text = "nationality: ${data.player?.nationality}"
-                binding.weight.text = "height: ${data.player?.weight}"
-                binding.height.text = "weight: ${data.player?.height}"
+                    //TODO: replace hardcoded with strings from resource
+                    binding.nationality.text = "nationality: ${it.nationality}"
+                    binding.weight.text = "height: ${it.weight}"
+                    binding.height.text = "weight: ${it.height}"
 
-                binding.position.text = data.statistics?.games?.position.toString()
-                binding.rating.text = data.statistics?.games?.rating.toString()
+                    binding.playerPhoto.load(it.photo)
+                }
 
-                binding.goals.text = data.statistics?.goals?.total.toString()
-                binding.assists.text = data.statistics?.goals?.assists.toString()
+                data.statistics?.let {
+                    binding.position.text = it.games?.position.toString()
+                    binding.rating.text = it.games?.rating.toString()
 
-                binding.redCard.text = data.statistics?.cards?.red.toString()
-                binding.yellowCard.text = data.statistics?.cards?.yellow.toString()
+                    binding.goals.text = it.goals?.total.toString()
+                    binding.assists.text = it.goals?.assists.toString()
 
-                binding.playerPhoto.load(data.player?.photo)
+                    binding.redCard.text = it.cards?.red.toString()
+                    binding.yellowCard.text = it.cards?.yellow.toString()
+                }
 
                 data.transfer?.transfers?.let { careerAdapter.setData(it) }
+                if (playerViewModel.isDataFetched)
+                    hideProgressBar()
             }
         }
+    }
+
+    private fun initClickListeners() {
+        binding.back.setOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
     }
 }

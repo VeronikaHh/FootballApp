@@ -12,29 +12,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchTeamViewModel @Inject constructor(
+class VenueViewModel @Inject constructor(
     private val teamRepository: TeamRepository
 ) : ViewModel() {
 
-    private val _teamsState = MutableStateFlow<SearchState>(SearchState.Empty)
-    val teamsState: StateFlow<SearchState>
-        get() = _teamsState
+    private val _team = MutableStateFlow(Teams())
 
-    init {
-        collectFlow("england")
-    }
+    val team: StateFlow<Teams>
+        get() = _team
 
-    fun collectFlow(search: String) {
+    fun collectFlow(team: Int) {
         viewModelScope.launch(Dispatchers.Default) {
-            _teamsState.emit(SearchState.Loading)
-            val teams = teamRepository.searchTeam(search)
-            _teamsState.emit(SearchState.Selected(teams = teams))
+            _team.value = teamRepository.getTeam(team)
         }
     }
-}
-
-sealed interface SearchState {
-    object Empty: SearchState
-    object Loading : SearchState
-    data class Selected(val teams: List<Teams>) : SearchState
 }

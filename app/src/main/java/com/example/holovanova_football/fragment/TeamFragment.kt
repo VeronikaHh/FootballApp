@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.decode.SvgDecoder
@@ -24,11 +25,11 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
 
     private val streakAdapter = StreakAdapter()
 
-    private var playerAdapter = PlayerAdapter() { playerId ->
+    private val navArgs by navArgs<TeamFragmentArgs>()
+
+    private var playerAdapter = PlayerAdapter { playerId ->
         val teamId = viewModel.data.value.team?.team?.id!!
-        findNavController().navigate(
-            TeamFragmentDirections.actionToPlayerFragment(playerId, teamId)
-        )
+        openPlayerFragment(playerId, teamId)
     }
 
     override fun inflateBinding(layoutInflater: LayoutInflater): FragmentTeamBinding {
@@ -37,22 +38,23 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showProgressBar()
+        initCollectors()
+        initClickListeners()
+    }
 
-        binding.progressBar.visibility = View.VISIBLE
-
+    private fun initClickListeners() {
         binding.back.setOnClickListener {
             findNavController().navigateUp()
         }
 
         binding.venueContainer.setOnClickListener {
-            val modalBottomSheet = VenueBottomSheet()
+            val modalBottomSheet = VenueBottomSheet(navArgs.teamId)
             modalBottomSheet.show(parentFragmentManager, VenueBottomSheet.TAG)
         }
+    }
 
-        if (viewModel.isDataFetched) {
-            binding.progressBar.visibility = View.GONE
-        }
-
+    private fun initCollectors() {
         binding.streakRv.apply {
             adapter = streakAdapter
             layoutManager =
@@ -67,55 +69,83 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
 
         lifecycleScope.launch {
 
+            viewModel.collectFlow(navArgs.teamId)
             viewModel.data.collect { data ->
 
-                binding.titleToolbar.text = data.teamStatistics?.team?.name
-                binding.teamName.text = data.teamStatistics?.team?.name
-                binding.teamLogo.load(data.teamStatistics?.team?.logo)
-                binding.leagueName.text = data.teamStatistics?.league?.name
-                binding.leagueLogo.load(data.teamStatistics?.league?.logo)
-
-                binding.countryName.text = data.teamStatistics?.league?.country
-                binding.countryFlag.load(data.teamStatistics?.league?.flag) {
-                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+                data.teamStatistics?.team?.let {
+                    binding.titleToolbar.text = it.name
+                    binding.teamName.text = it.name
+                    binding.teamLogo.load(it.logo)
                 }
 
-                binding.venueName.text = data.team?.venue?.name
-                binding.venuePhoto.load(data.team?.venue?.image)
+                data.teamStatistics?.league?.let {
+                    binding.leagueName.text = it.name
+                    binding.leagueLogo.load(it.logo)
+                    binding.countryName.text = it.country
+                    binding.countryFlag.load(it.flag) {
+                        decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+                    }
+                }
+
+                data.team?.venue?.let {
+                    binding.venueName.text = it.name
+                    binding.venuePhoto.load(it.image)
+                }
 
                 data.teamStatistics?.form?.let { streakAdapter.setData(it) }
 
-                binding.goalsHome.text =
-                    data.teamStatistics?.goals?.`for`?.total?.home?.toInt().toString()
-                binding.goalsAway.text =
-                    data.teamStatistics?.goals?.`for`?.total?.away?.toInt().toString()
+                data.teamStatistics?.goals?.`for`?.let {
+                    binding.goalsHome.text =
+                        it.total?.home?.toInt().toString()
+                    binding.goalsAway.text =
+                        it.total?.away?.toInt().toString()
 
-                binding.goalsAvgHome.text =
-                    data.teamStatistics?.goals?.`for`?.average?.home.toString()
-                binding.goalsAvgAway.text =
-                    data.teamStatistics?.goals?.`for`?.average?.away.toString()
+                    binding.goalsAvgHome.text =
+                        it.average?.home.toString()
+                    binding.goalsAvgAway.text =
+                        it.average?.away.toString()
+                }
 
-                binding.cleanSheetHome.text =
-                    data.teamStatistics?.clean_sheet?.home?.toInt().toString()
-                binding.cleanSheetAway.text =
-                    data.teamStatistics?.clean_sheet?.away?.toInt().toString()
+                data.teamStatistics?.clean_sheet?.let {
+                    binding.cleanSheetHome.text =
+                        it.home?.toInt().toString()
+                    binding.cleanSheetAway.text =
+                        it.away?.toInt().toString()
 
-                binding.winHome.text = data.teamStatistics?.biggest?.wins?.home
-                binding.winAway.text = data.teamStatistics?.biggest?.wins?.away
-                binding.loseHome.text = data.teamStatistics?.biggest?.loses?.home
-                binding.loseAway.text = data.teamStatistics?.biggest?.loses?.away
+                }
 
-                binding.win.text = data.teamStatistics?.biggest?.streak?.wins.toString()
-                binding.lose.text = data.teamStatistics?.biggest?.streak?.loses.toString()
-                binding.draw.text = data.teamStatistics?.biggest?.streak?.draws.toString()
+                data.teamStatistics?.biggest?.let {
+                    binding.winHome.text = it.wins?.home
+                    binding.winAway.text = it.wins?.away
+                    binding.loseHome.text = it.loses?.home
+                    binding.loseAway.text = it.loses?.away
+
+                    it.streak?.let { streak ->
+                        binding.win.text = streak.wins.toString()
+                        binding.lose.text = streak.loses.toString()
+                        binding.draw.text = streak.draws.toString()
+                    }
+                }
 
                 data.playerSquad?.players?.let { playerAdapter.setData(it) }
+
+                if (viewModel.isDataFetched)
+                    hideProgressBar()
             }
         }
     }
-}
 
-//TODO: implement Fragment.navigate function
-//public fun Fragment.navigate(action: String) {
-//    findNavController().navigate(action)
-//}
+    private fun openPlayerFragment(playerId: Int, teamId:Int) {
+        findNavController().navigate(
+            TeamFragmentDirections.actionToPlayerFragment(playerId, teamId)
+        )
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+    }
+}

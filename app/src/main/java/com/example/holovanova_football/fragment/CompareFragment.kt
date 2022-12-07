@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import coil.load
+import com.example.holovanova_football.R
 import com.example.holovanova_football.databinding.FragmentCompareBinding
 import com.example.holovanova_football.viewmodel.CompareViewModel
 import com.example.holovanova_football.viewmodel.SelectedTeamState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class CompareFragment : BaseFragment<FragmentCompareBinding>() {
@@ -22,6 +26,9 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>() {
         private const val FIRST_TEAM_KEY = "firstTeam"
         private const val SECOND_TEAM_KEY = "secondTeam"
     }
+
+    private var firstTeamId by Delegates.notNull<Int>()
+    private var secondTeamId by Delegates.notNull<Int>()
 
     private val viewModel: CompareViewModel by viewModels()
 
@@ -40,12 +47,13 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>() {
         setFragmentResultListener(FIRST_TEAM_KEY) { _, bundle ->
             val firstTeam = bundle.getInt(FIRST_TEAM_KEY)
             viewModel.fetchFirstTeam(firstTeam)
-
+            firstTeamId = firstTeam
         }
 
         setFragmentResultListener(SECOND_TEAM_KEY) { _, bundle ->
             val secondTeam = bundle.getInt(SECOND_TEAM_KEY)
             viewModel.fetchSecondTeam(secondTeam)
+            secondTeamId = secondTeam
         }
     }
 
@@ -59,7 +67,7 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>() {
         }
 
         binding.compareBtn.setOnClickListener {
-            //TODO call openHeadToHeadFragment with args
+            openHeadToHeadFragment(firstTeamId, secondTeamId)
         }
     }
 
@@ -70,6 +78,7 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>() {
                     containerText = binding.firstContainer,
                     teamLogo = binding.firstTeamLogo,
                     teamName = binding.firstTeamName,
+                    progressBar = binding.firstProgressBar,
                     state = state
                 )
             }
@@ -81,6 +90,7 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>() {
                     containerText = binding.secondContainer,
                     teamLogo = binding.secondTeamLogo,
                     teamName = binding.secondTeamName,
+                    progressBar = binding.secondProgressBar,
                     state = state
                 )
             }
@@ -97,19 +107,26 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>() {
         containerText: TextView,
         teamLogo: ImageView,
         teamName: TextView,
+        progressBar: ProgressBar,
         state: SelectedTeamState
     ) {
         when (state) {
             is SelectedTeamState.Selected -> {
                 val team = state.team
-                //TODO show logo and team name
+                containerText.setText(R.string.empty)
+                teamLogo.load(team.team?.logo)
+                teamName.text = team.team?.name
+                progressBar.visibility = View.GONE
             }
             is SelectedTeamState.Empty -> {
-                //TODO show text
-
+                progressBar.visibility = View.GONE
+                containerText.setText(R.string.battle_click)
             }
             is SelectedTeamState.Loading -> {
-                //TODO show loading
+                progressBar.visibility = View.VISIBLE
+                containerText.setText(R.string.empty)
+                teamLogo.load(R.string.empty)
+                teamName.setText(R.string.empty)
             }
 
         }
