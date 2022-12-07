@@ -30,17 +30,11 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initCollectors()
+        initClickListeners()
+    }
 
-        //binding.progressBar.visibility = View.VISIBLE
-
-        binding.back.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
-//        if (playerViewModel.isDataFetched) {
-//            binding.progressBar.visibility = View.GONE
-//        }
-
+    private fun initCollectors() {
         binding.carrerRv.apply {
             adapter = careerAdapter
             layoutManager =
@@ -48,7 +42,7 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
         }
 
         lifecycleScope.launch {
-            
+
             val player = args.player
             val team = args.team
             playerViewModel.collectFlow(player, team)
@@ -76,6 +70,12 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
 
                 data.transfer?.transfers?.let { careerAdapter.setData(it) }
             }
+        }
+    }
+
+    private fun initClickListeners() {
+        binding.back.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 }

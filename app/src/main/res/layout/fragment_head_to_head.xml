@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.HeadToHeadFragment">
@@ -10,130 +10,163 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/teams_container"
-        android:background="@color/white">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll|enterAlways">
+
         <ImageView
             android:id="@+id/back"
-            android:src="@drawable/app_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:src="@drawable/app_bar"
             app:tint="@color/cyanide" />
+
         <TextView
             android:id="@+id/title_toolbar"
-            android:layout_gravity="end"
+            style="@style/fontStyleBigSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            style="@style/fontStyleBigSubtitle"/>
+            android:layout_gravity="end"
+            android:layout_margin="15dp" />
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
         android:id="@+id/teams_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="3">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/home_team_container"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginBottom="15dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/fontStyleSubtitle"
-                android:textColor="@color/black"
-                android:text="real madrid"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/fontStyleSubtitle"
-                android:textColor="@color/black"
-                android:text="vs"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="25dp"
-            android:layout_weight="1">
+            android:orientation="vertical">
+
             <ImageView
+                android:id="@+id/home_team_logo"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_marginBottom="15dp"/>
+                android:layout_marginBottom="15dp"
+                android:gravity="center" />
+
             <TextView
+                android:id="@+id/home_team_name"
+                style="@style/fontStyleBigSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/fontStyleSubtitle"
-                android:textColor="@color/black"
-                android:text="real madrid"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/fontStyleBigSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:gravity="center"
+            android:text="@string/vs" />
+
+        <LinearLayout
+            android:id="@+id/away_team_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/away_team_logo"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/away_team_name"
+                style="@style/fontStyleBigSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/button_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/teams_container"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/teams_container">
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_last_ten"
+            style="@style/ButtonCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            style="@style/ButtonCustomStyle"
-            android:text="@string/btn_last_ten"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:text="@string/btn_last_ten" />
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_this_season"
+            style="@style/ButtonCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            style="@style/ButtonCustomStyle"
-            android:text="@string/btn_this_season"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:text="@string/btn_this_season" />
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_last_season"
+            style="@style/ButtonCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            style="@style/ButtonCustomStyle"
-            android:text="@string/btn_last_season"/>
+            android:text="@string/btn_last_season" />
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/match_rv"
-        tools:listitem="@layout/match_rv_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="15dp"
         android:orientation="vertical"
         android:requiresFadingEdge="vertical"
         android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/button_container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_container"
+        tools:listitem="@layout/match_rv_item" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/cyanide"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
