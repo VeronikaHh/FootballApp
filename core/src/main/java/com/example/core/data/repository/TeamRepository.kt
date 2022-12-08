@@ -22,7 +22,7 @@ class TeamRepository @Inject constructor(
         val team = league.response[0].league?.id?.let {
             remoteDataSource.fetchTeamStatistics(
                 teamId = teamId,
-                leagueId = it
+                leagueId = it//TODO from league
             )
         }
         return team?.let { teamStatisticsMapper.dtoToDomain(it.response) }
