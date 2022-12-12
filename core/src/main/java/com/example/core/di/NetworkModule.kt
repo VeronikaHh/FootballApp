@@ -23,8 +23,8 @@ object NetworkModule {
             Interceptor { chain ->
                 val builder = chain.request().newBuilder()
                 builder.header("x-rapidapi-host", "v3.football.api-sports.io")
-//                builder.header("x-rapidapi-key", "dd0226de9135c65688994e14cb09d2d5")
-                builder.header("x-rapidapi-key", "f9b1a4d98fe8a4e70034d816352b7eec")
+                builder.header("x-rapidapi-key", "dd0226de9135c65688994e14cb09d2d5")
+//                builder.header("x-rapidapi-key", "b65af41717428ec82387208d196ae1cb")
                 return@Interceptor chain.proceed(builder.build())
             }
         )

@@ -42,5 +42,5 @@
     <string name="search_hint">search</string>
     <string name="vs">vs</string>
     <string name="search_error">No results…</string>
-    <string name="search_toolbar">Select a team</string>
+    <string name="search_toolbar">Search a team</string>
 </resources>

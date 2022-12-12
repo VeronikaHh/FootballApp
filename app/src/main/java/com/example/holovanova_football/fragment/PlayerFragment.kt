@@ -30,7 +30,6 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showProgressBar()
         initCollectors()
         initClickListeners()
     }
@@ -49,33 +48,27 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
             playerViewModel.collectFlow(player, team)
             playerViewModel.data.collect { data ->
 
-                data.player?.let {
-                    binding.titleToolbar.text = it.name
-                    binding.playerFirstname.text = it.firstname
-                    binding.playerLastname.text = it.lastname
+                binding.titleToolbar.text = data.player?.name
+                binding.playerFirstname.text = data.player?.firstname
+                binding.playerLastname.text = data.player?.lastname
 
-                    //TODO: replace hardcoded with strings from resource
-                    binding.nationality.text = "nationality: ${it.nationality}"
-                    binding.weight.text = "height: ${it.weight}"
-                    binding.height.text = "weight: ${it.height}"
+                //TODO: replace hardcoded with strings from resource
+                binding.nationality.text = "nationality: ${data.player?.nationality}"
+                binding.weight.text = "height: ${data.player?.weight}"
+                binding.height.text = "weight: ${data.player?.height}"
 
-                    binding.playerPhoto.load(it.photo)
-                }
+                binding.position.text = data.statistics?.games?.position.toString()
+                binding.rating.text = data.statistics?.games?.rating.toString()
 
-                data.statistics?.let {
-                    binding.position.text = it.games?.position.toString()
-                    binding.rating.text = it.games?.rating.toString()
+                binding.goals.text = data.statistics?.goals?.total.toString()
+                binding.assists.text = data.statistics?.goals?.assists.toString()
 
-                    binding.goals.text = it.goals?.total.toString()
-                    binding.assists.text = it.goals?.assists.toString()
+                binding.redCard.text = data.statistics?.cards?.red.toString()
+                binding.yellowCard.text = data.statistics?.cards?.yellow.toString()
 
-                    binding.redCard.text = it.cards?.red.toString()
-                    binding.yellowCard.text = it.cards?.yellow.toString()
-                }
+                binding.playerPhoto.load(data.player?.photo)
 
                 data.transfer?.transfers?.let { careerAdapter.setData(it) }
-                if (playerViewModel.isDataFetched)
-                    hideProgressBar()
             }
         }
     }
@@ -84,13 +77,5 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
         binding.back.setOnClickListener {
             findNavController().navigateUp()
         }
-    }
-
-    private fun showProgressBar() {
-        binding.progressBar.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
-        binding.progressBar.visibility = View.GONE
     }
 }

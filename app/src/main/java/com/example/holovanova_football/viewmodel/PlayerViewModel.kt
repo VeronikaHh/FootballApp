@@ -20,20 +20,18 @@ class PlayerViewModel @Inject constructor(
     private val playerRepository: PlayerRepository
 ) : ViewModel() {
 
-    private val _transfer = MutableStateFlow<PlayerTransfers>(PlayerTransfers())
-    private val _playerStatistics = MutableStateFlow<PlayerStatistics>(PlayerStatistics())
+    private val _transfer = MutableStateFlow(PlayerTransfers())
+    private val _playerStatistics = MutableStateFlow(PlayerStatistics())
 
-    private val _data = MutableStateFlow<PlayerFragmentData>(PlayerFragmentData())
+    private val _data = MutableStateFlow(PlayerFragmentData())
     val data: StateFlow<PlayerFragmentData>
         get() = _data
 
-    var isDataFetched = false
 
     fun collectFlow(player: Int, team: Int) {
         viewModelScope.launch {
             _transfer.value = transferRepository.getTransfers(player)
             _playerStatistics.value = playerRepository.getPlayerStatistics(player, team)
-            isDataFetched = true
             combine(_playerStatistics, _transfer) { playerStatistics, transfer ->
                 _data.value = data.value.copy(
                     transfer = transfer,
@@ -42,6 +40,5 @@ class PlayerViewModel @Inject constructor(
                 )
             }.collect()
         }
-        isDataFetched = true
     }
 }

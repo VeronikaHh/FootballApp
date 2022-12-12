@@ -125,7 +125,7 @@ class CompareFragment : BaseFragment<FragmentCompareBinding>() {
             is SelectedTeamState.Loading -> {
                 progressBar.visibility = View.VISIBLE
                 containerText.setText(R.string.empty)
-                teamLogo.load(R.string.empty)
+                teamLogo.load("")
                 teamName.setText(R.string.empty)
             }
 

@@ -14,30 +14,19 @@ class MatchHolder(
     fun bind(h2h: HeadToHead) {
         binding.leagueName.text = h2h.league?.name
 
-        h2h.teams?.home?.let {
-            binding.firstTeamName.text = it.name
-            binding.firstTeamLogo.load(it.logo)
-        }
-        h2h.teams?.away?.let {
-            binding.secondTeamName.text = it.name
-            binding.secondTeamLogo.load(it.logo)
-        }
-        h2h.fixture?.status?.let {
-            binding.matchStatus.text = it.long
-            binding.matchTime.text = "${it.elapsed?: 0}`"
-        }
+        binding.firstTeamName.text = h2h.teams?.home?.name
+        binding.firstTeamLogo.load(h2h.teams?.home?.logo)
 
-        h2h.score?.fulltime?.let {
-            binding.firstTeamScore.text = it.home
-            binding.secondTeamScore.text = it.away
-        }
+        binding.secondTeamName.text = h2h.teams?.away?.name
+        binding.secondTeamLogo.load(h2h.teams?.away?.logo)
 
+        binding.matchStatus.text = h2h.fixture?.status?.long
+        binding.matchTime.text = "${h2h.fixture?.status?.elapsed}`"
+
+        binding.firstTeamScore.text = h2h.score?.fulltime?.home
+        binding.secondTeamScore.text = h2h.score?.fulltime?.away
+        
         binding.date.text = h2h.fixture?.date?.let { parseDate(it) }
-
-        h2h.fixture?.venue?.let {
-            binding.venueAddress.text = it.city?:""
-        }
-        binding.referee.text = h2h.fixture?.referee?:""
     }
 
     private fun parseDate(date: String): String {

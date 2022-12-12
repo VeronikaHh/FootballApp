@@ -72,7 +72,6 @@ class TeamViewModel @Inject constructor(
     private val _team = MutableStateFlow(Teams())
     private val _teamStatistics = MutableStateFlow<TeamStatistics?>(TeamStatistics())
 
-    var isDataFetched = false
     private val _data = MutableStateFlow(TeamFragmentData())
 
     val data: StateFlow<TeamFragmentData>
@@ -83,7 +82,6 @@ class TeamViewModel @Inject constructor(
             _playerSquad.value = playerRepository.getPlayerSquad(team)
             _team.value = teamRepository.getTeam(team)
             _teamStatistics.value = teamRepository.getTeamStatistics(team)
-            isDataFetched = true
             combine(_team, _teamStatistics, _playerSquad) { team, teamStatistics, playerSquad ->
                 _data.value = data.value.copy(
                     team = team,

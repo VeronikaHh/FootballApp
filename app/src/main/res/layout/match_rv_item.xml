@@ -30,13 +30,10 @@
                 android:orientation="vertical">
 
                 <ImageView
-
-                    android:layout_gravity="center"
                     android:id="@+id/first_team_logo"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
-                <!--                    android:ellipsize=""-->
                 <TextView
                     android:id="@+id/first_team_name"
                     android:gravity="center"
@@ -56,6 +53,7 @@
 
                 <TextView
                     android:id="@+id/league_name"
+                    android:text="la liga"
                     style="@style/MatchFont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,6 +68,7 @@
 
                     <TextView
                         android:id="@+id/first_team_score"
+                        android:text="2"
                         style="@style/MatchScoreFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -85,6 +84,7 @@
 
                         <TextView
                             android:id="@+id/match_status"
+                            android:text="finished"
                             style="@style/MatchFont"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -98,6 +98,7 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <TextView
+                    android:text="90`"
                     style="@style/MatchFont"
                     android:id="@+id/match_time"
                     android:layout_width="wrap_content"
@@ -113,7 +114,6 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_gravity="center"
                     android:id="@+id/second_team_logo"
                     android:layout_width="40dp"
                     android:layout_height="40dp" />
@@ -130,18 +130,17 @@
         </LinearLayout>
         <LinearLayout
             android:gravity="center"
-            android:layout_marginTop="15dp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3">
             <TextView
-                android:id="@+id/venue_address"
+                android:id="@+id/home_address"
                 android:gravity="center"
                 style="@style/MatchFont"
                 android:layout_weight="1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/date"
@@ -151,11 +150,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/referee"
+                android:id="@+id/away_address"
                 android:gravity="center"
                 style="@style/MatchFont"
                 android:layout_weight="1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>

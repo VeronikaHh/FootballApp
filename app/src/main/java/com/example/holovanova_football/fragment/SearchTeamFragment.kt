@@ -80,7 +80,7 @@ class SearchTeamFragment : BaseFragment<FragmentSearchTeamBinding>(),
     ) {
         when (state) {
             is SearchState.Selected -> {
-                containerText.setText(R.string.empty)
+                containerText.text = ""
                 val teams = state.teams
                 teamAdapter.setData(teams.map { it.team!! })
                 progressBar.visibility = View.GONE
@@ -90,7 +90,7 @@ class SearchTeamFragment : BaseFragment<FragmentSearchTeamBinding>(),
                 containerText.setText(R.string.search_error)
             }
             is SearchState.Loading -> {
-                containerText.setText(R.string.empty)
+                containerText.text = ""
                 progressBar.visibility = View.VISIBLE
             }
         }

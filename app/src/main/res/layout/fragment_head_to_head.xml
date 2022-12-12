@@ -48,7 +48,7 @@
             android:id="@+id/home_team_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="25dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -64,7 +64,6 @@
                 style="@style/fontStyleBigSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="130dp"
                 android:layout_gravity="center"
                 android:gravity="center" />
         </LinearLayout>
@@ -76,14 +75,13 @@
             android:layout_gravity="center"
             android:layout_margin="30dp"
             android:gravity="center"
-            android:foregroundGravity="center"
             android:text="@string/vs" />
 
         <LinearLayout
             android:id="@+id/away_team_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="25dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -99,7 +97,6 @@
                 style="@style/fontStyleBigSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="130dp"
                 android:layout_gravity="center"
                 android:gravity="center" />
         </LinearLayout>
