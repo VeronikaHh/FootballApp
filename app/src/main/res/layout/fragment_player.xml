@@ -319,5 +319,11 @@
         android:indeterminateTint="@color/cyanide"
         android:indeterminateTintMode="src_atop"
         android:visibility="gone" />
+    <View
+        android:id="@+id/loading_view"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,15 +9,16 @@ import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.holovanova_football.databinding.LayoutVenueBinding
 import com.example.holovanova_football.viewmodel.TeamViewModel
+import com.example.holovanova_football.viewmodel.VenueViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class VenueBottomSheet : BottomSheetDialogFragment() {
+class VenueBottomSheet(private val teamId: Int) : BottomSheetDialogFragment() {
 
 
-    private val viewModel: TeamViewModel by viewModels()
+    private val viewModel: VenueViewModel by viewModels()
 
     private var _binding: LayoutVenueBinding? = null
 
@@ -39,8 +40,9 @@ class VenueBottomSheet : BottomSheetDialogFragment() {
 
     private fun initCollectors(){
         lifecycleScope.launch {
-            viewModel.data.collect { data ->
-                data.team?.venue?.let {
+            viewModel.collectFlow(teamId)
+            viewModel.team.collect { team ->
+                team.venue?.let {
                     binding.venueName.text = it.name
                     binding.venuePhoto.load(it.image)
                     binding.city.text = it.city

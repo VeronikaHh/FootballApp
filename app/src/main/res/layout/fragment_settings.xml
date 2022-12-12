@@ -1,15 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.SettingsFragment">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.SettingsFragment"
+    android:orientation="vertical">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:padding="40dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/settings_fragment"
-        style="@style/BigTitleFontStyle"
-        android:gravity="center"/>
+        style="@style/BigTitleFontStyle"/>
 
-</FrameLayout>
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/blue"
+        app:cardElevation="15dp"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="notifications"
+            style="@style/SettingFont"
+            android:layout_gravity="start"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="15dp"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="privacy"
+            style="@style/SettingFont"
+            android:layout_gravity="start"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="15dp"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="apperiance"
+            style="@style/SettingFont"
+            android:layout_gravity="start"/>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="15dp"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="language"
+            style="@style/SettingFont"
+            android:layout_gravity="start"/>
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="15dp"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            style="@style/SettingFont"
+            android:layout_gravity="start"/>
+        <TextView
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_version"
+            style="@style/SettingFont"
+            android:layout_gravity="end"/>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -23,6 +23,7 @@ class PlayerViewModel @Inject constructor(
     private val _transfer = MutableStateFlow(PlayerTransfers())
     private val _playerStatistics = MutableStateFlow(PlayerStatistics())
 
+    var isDataFetched = false
     private val _data = MutableStateFlow(PlayerFragmentData())
     val data: StateFlow<PlayerFragmentData>
         get() = _data
@@ -32,6 +33,7 @@ class PlayerViewModel @Inject constructor(
         viewModelScope.launch {
             _transfer.value = transferRepository.getTransfers(player)
             _playerStatistics.value = playerRepository.getPlayerStatistics(player, team)
+            isDataFetched = true
             combine(_playerStatistics, _transfer) { playerStatistics, transfer ->
                 _data.value = data.value.copy(
                     transfer = transfer,

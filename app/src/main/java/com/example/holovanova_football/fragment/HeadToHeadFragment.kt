@@ -33,32 +33,37 @@ class HeadToHeadFragment : BaseFragment<FragmentHeadToHeadBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showLoadingView()
         initClickListeners()
         initCollectors()
     }
 
     private fun initCollectors() {
+        activeButtonLastTen()
+
         binding.matchRv.apply {
             adapter = matchAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
 
-        pressedButtonState(binding.btnLastTen)
-        unpressedButtonState(binding.btnThisSeason)
-        unpressedButtonState(binding.btnLastSeason)
-
         lifecycleScope.launch {
 
             viewModel.collectFlow(navArgs.firstTeamId, navArgs.secondTeamId)
+
             viewModel.data.collect {
-                it.lastTen?.let { it1 -> matchAdapter.setData(it1) }
+                it.lastTen?.let { list -> matchAdapter.setData(list) }
+
+                binding.titleToolbar.text = "${it.teams?.home?.name} vs ${it.teams?.away?.name}"
 
                 binding.homeTeamLogo.load(it.teams?.home?.logo)
                 binding.awayTeamLogo.load(it.teams?.away?.logo)
 
                 binding.homeTeamName.text = it.teams?.home?.name
                 binding.awayTeamName.text = it.teams?.away?.name
+
+                if (viewModel.isDataFetched)
+                    hideLoadingView()
             }
         }
     }
@@ -71,31 +76,25 @@ class HeadToHeadFragment : BaseFragment<FragmentHeadToHeadBinding>() {
 
         binding.btnLastTen.setOnClickListener {
             fetchLastTen()
-            pressedButtonState(binding.btnLastTen)
-            unpressedButtonState(binding.btnLastSeason)
-            unpressedButtonState(binding.btnThisSeason)
+            activeButtonLastTen()
         }
 
         binding.btnThisSeason.setOnClickListener {
             fetchThisSeason()
-            pressedButtonState(binding.btnThisSeason)
-            unpressedButtonState(binding.btnLastTen)
-            unpressedButtonState(binding.btnLastSeason)
+            activeButtonThisSeason()
         }
 
         binding.btnLastSeason.setOnClickListener {
             fetchLastSeason()
-            pressedButtonState(binding.btnLastSeason)
-            unpressedButtonState(binding.btnLastTen)
-            unpressedButtonState(binding.btnThisSeason)
+            activeButtonLastSeason()
         }
 
         binding.homeTeamContainer.setOnClickListener {
             viewModel.data.value.teams?.home?.id?.let { openTeamFragment(it) }
         }
 
-        binding.homeTeamContainer.setOnClickListener {
-            viewModel.data.value.teams?.home?.id?.let { openTeamFragment(it) }
+        binding.awayTeamContainer.setOnClickListener {
+            viewModel.data.value.teams?.away?.id?.let { openTeamFragment(it) }
         }
     }
 
@@ -116,6 +115,25 @@ class HeadToHeadFragment : BaseFragment<FragmentHeadToHeadBinding>() {
         button.setBackgroundColor(getColor(R.color.lightBlue))
         button.setTextColor(getColor(R.color.cyanide))
     }
+
+    private fun activeButtonLastTen(){
+        pressedButtonState(binding.btnLastTen)
+        unpressedButtonState(binding.btnThisSeason)
+        unpressedButtonState(binding.btnLastSeason)
+    }
+
+    private fun activeButtonLastSeason(){
+        pressedButtonState(binding.btnLastSeason)
+        unpressedButtonState(binding.btnLastTen)
+        unpressedButtonState(binding.btnThisSeason)
+    }
+
+    private fun activeButtonThisSeason(){
+        pressedButtonState(binding.btnThisSeason)
+        unpressedButtonState(binding.btnLastTen)
+        unpressedButtonState(binding.btnLastSeason)
+    }
+
 
     private fun fetchLastTen() {
         lifecycleScope.launch {
@@ -145,5 +163,15 @@ class HeadToHeadFragment : BaseFragment<FragmentHeadToHeadBinding>() {
         findNavController().navigate(
             HeadToHeadFragmentDirections.actionToTeam(teamId)
         )
+    }
+
+    private fun showLoadingView() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.loadingView.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingView() {
+        binding.progressBar.visibility = View.GONE
+        binding.loadingView.visibility = View.GONE
     }
 }

@@ -38,6 +38,9 @@
         <argument
             android:name="secondTeamId"
             app:argType="integer" />
+        <deepLink
+            android:id="@+id/h2hDeepLink"
+            app:uri="app.com/football/h2h/firstTeamId={firstTeamId}/secondTeamId={secondTeamId}" />
     </fragment>
     <fragment
         android:id="@+id/teamFragment"
@@ -50,6 +53,9 @@
         <argument
             android:name="teamId"
             app:argType="integer" />
+        <deepLink
+            android:id="@+id/teamDeepLink"
+            app:uri="app.com/football/team/teamId={teamId}" />
     </fragment>
     <fragment
         android:id="@+id/playerFragment"
@@ -65,6 +71,9 @@
         <argument
             android:name="team"
             app:argType="integer" />
+        <deepLink
+            android:id="@+id/playerDeepLink"
+            app:uri="app.com/football/player/player={player}/team={team}" />
     </fragment>
     <fragment
         android:id="@+id/modalBottomSheet"
