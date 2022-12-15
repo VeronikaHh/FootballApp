@@ -13,7 +13,7 @@ class MatchAdapter : RecyclerView.Adapter<MatchHolder>() {
 
     private var matchList = mutableListOf<HeadToHead>()
 
-    fun setData(newList: List<HeadToHead>){
+    fun setData(newList: List<HeadToHead>) {
         val diffUtil = MatchDiffUtil(matchList, newList)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         matchList = newList.toMutableList()

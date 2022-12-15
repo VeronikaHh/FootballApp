@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class VenueBottomSheet(private val teamId: Int) : BottomSheetDialogFragment() {
 
-
     private val viewModel: VenueViewModel by viewModels()
 
     private var _binding: LayoutVenueBinding? = null
@@ -38,7 +37,7 @@ class VenueBottomSheet(private val teamId: Int) : BottomSheetDialogFragment() {
         initCollectors()
     }
 
-    private fun initCollectors(){
+    private fun initCollectors() {
         lifecycleScope.launch {
             viewModel.collectFlow(teamId)
             viewModel.team.collect { team ->

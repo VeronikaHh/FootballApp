@@ -15,12 +15,14 @@ class HeadToHeadRepository @Inject constructor(
         )
         return headToHead.response.map(mapper::dtoToDomain)
     }
+
     suspend fun getHeadToHeadThisSeason(h2h: String): List<HeadToHead> {
         val headToHead = headToHeadDataSource.fetchHeadToHeadThisSeason(
             h2h = h2h
         )
         return headToHead.response.map(mapper::dtoToDomain)
     }
+
     suspend fun getHeadToHeadLastSeason(h2h: String): List<HeadToHead> {
         val headToHead = headToHeadDataSource.fetchHeadToHeadLastSeason(
             h2h = h2h

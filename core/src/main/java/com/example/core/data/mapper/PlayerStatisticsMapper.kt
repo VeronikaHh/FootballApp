@@ -2,7 +2,6 @@ package com.example.core.data.mapper
 
 import com.example.core.data.local.model.PlayerStatisticsEntity
 import com.example.core.data.remote.model.players.PlayerStatisticsDto
-import com.example.core.data.remote.model.players.StatisticsDto
 import com.example.core.data.remote.model.players.dtoToDomain
 import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.PlayerStatistics
@@ -15,7 +14,7 @@ class PlayerStatisticsMapper @Inject constructor(
     private val teamMapper: TeamMapper,
     private val leagueMapper: LeagueMapper,
     private val gson: Gson
-) : Mapper<PlayerStatisticsDto,PlayerStatisticsEntity,PlayerStatistics> {
+) : Mapper<PlayerStatisticsDto, PlayerStatisticsEntity, PlayerStatistics> {
     override fun entityToDomain(entity: PlayerStatisticsEntity): PlayerStatistics {
         return PlayerStatistics(
             player = entity.player?.let(playerMapper::entityToDomain),

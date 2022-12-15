@@ -15,6 +15,7 @@
         <action
             android:id="@+id/action_to_headToHeadFragment"
             app:destination="@id/headToHeadFragment" />
+        <deepLink app:uri="app://football/compare"/>
     </fragment>
     <fragment
         android:id="@+id/searchTeamFragment"

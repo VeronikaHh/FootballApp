@@ -51,16 +51,19 @@ class HeadToHeadFragment : BaseFragment<FragmentHeadToHeadBinding>() {
 
             viewModel.collectFlow(navArgs.firstTeamId, navArgs.secondTeamId)
 
-            viewModel.data.collect {
-                it.lastTen?.let { list -> matchAdapter.setData(list) }
+            viewModel.data.collect { data ->
+                data.lastTen?.let { list -> matchAdapter.setData(list) }
 
-                binding.titleToolbar.text = "${it.teams?.home?.name} vs ${it.teams?.away?.name}"
+                data.teams?.let {
+                    val toolBarTitle = it.home?.name + " vs " + it.away?.name
+                    binding.titleToolbar.text = toolBarTitle
 
-                binding.homeTeamLogo.load(it.teams?.home?.logo)
-                binding.awayTeamLogo.load(it.teams?.away?.logo)
+                    binding.homeTeamLogo.load(it.home?.logo)
+                    binding.awayTeamLogo.load(it.away?.logo)
 
-                binding.homeTeamName.text = it.teams?.home?.name
-                binding.awayTeamName.text = it.teams?.away?.name
+                    binding.homeTeamName.text = it.home?.name
+                    binding.awayTeamName.text = it.away?.name
+                }
 
                 if (viewModel.isDataFetched)
                     hideLoadingView()
@@ -116,19 +119,19 @@ class HeadToHeadFragment : BaseFragment<FragmentHeadToHeadBinding>() {
         button.setTextColor(getColor(R.color.cyanide))
     }
 
-    private fun activeButtonLastTen(){
+    private fun activeButtonLastTen() {
         pressedButtonState(binding.btnLastTen)
         unpressedButtonState(binding.btnThisSeason)
         unpressedButtonState(binding.btnLastSeason)
     }
 
-    private fun activeButtonLastSeason(){
+    private fun activeButtonLastSeason() {
         pressedButtonState(binding.btnLastSeason)
         unpressedButtonState(binding.btnLastTen)
         unpressedButtonState(binding.btnThisSeason)
     }
 
-    private fun activeButtonThisSeason(){
+    private fun activeButtonThisSeason() {
         pressedButtonState(binding.btnThisSeason)
         unpressedButtonState(binding.btnLastTen)
         unpressedButtonState(binding.btnLastSeason)

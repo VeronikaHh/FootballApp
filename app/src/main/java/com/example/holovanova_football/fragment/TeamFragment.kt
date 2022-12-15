@@ -28,8 +28,10 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
     private val navArgs by navArgs<TeamFragmentArgs>()
 
     private var playerAdapter = PlayerAdapter { playerId ->
-        val teamId = viewModel.data.value.team?.team?.id!!
-        openPlayerFragment(playerId, teamId)
+        viewModel.data.value.team?.team?.id?.let {
+            val teamId = it
+            openPlayerFragment(playerId, teamId)
+        }
     }
 
     override fun inflateBinding(layoutInflater: LayoutInflater): FragmentTeamBinding {
@@ -135,7 +137,7 @@ class TeamFragment : BaseFragment<FragmentTeamBinding>() {
         }
     }
 
-    private fun openPlayerFragment(playerId: Int, teamId:Int) {
+    private fun openPlayerFragment(playerId: Int, teamId: Int) {
         findNavController().navigate(
             TeamFragmentDirections.actionToPlayerFragment(playerId, teamId)
         )

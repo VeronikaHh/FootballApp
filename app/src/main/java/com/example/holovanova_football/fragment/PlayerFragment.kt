@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.example.holovanova_football.R
 import com.example.holovanova_football.adapter.CareerAdapter
 import com.example.holovanova_football.databinding.FragmentPlayerBinding
 import com.example.holovanova_football.viewmodel.PlayerViewModel
@@ -54,10 +55,12 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding>() {
                     binding.playerFirstname.text = it.firstname
                     binding.playerLastname.text = it.lastname
 
-                    //TODO: replace hardcoded with strings from resource
-                    binding.nationality.text = "nationality: ${it.nationality}"
-                    binding.weight.text = "height: ${it.weight}"
-                    binding.height.text = "weight: ${it.height}"
+                    val nationality = R.string.nationality.toString() + it.nationality.toString()
+                    val weight = R.string.weight.toString() + it.weight.toString()
+                    val height = R.string.height.toString() + it.height.toString()
+                    binding.nationality.text = nationality
+                    binding.weight.text = weight
+                    binding.height.text = height
 
                     binding.playerPhoto.load(it.photo)
                 }

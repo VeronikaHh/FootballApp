@@ -3,10 +3,8 @@ package com.example.holovanova_football.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.data.repository.HeadToHeadRepository
-import com.example.core.data.repository.TeamRepository
 import com.example.core.domain.model.HeadToHead
 import com.example.core.domain.model.HeadToHeadFragmentData
-import com.example.core.domain.model.Teams
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -16,8 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HeadToHeadViewModel @Inject constructor(
-    private val headToHeadRepository: HeadToHeadRepository,
-    private val teamRepository: TeamRepository
+    private val headToHeadRepository: HeadToHeadRepository
 ) : ViewModel() {
 
     private val _lastTen = MutableStateFlow<List<HeadToHead>>(emptyList())
@@ -29,14 +26,13 @@ class HeadToHeadViewModel @Inject constructor(
     val data: StateFlow<HeadToHeadFragmentData>
         get() = _data
 
-
     fun collectFlow(firstTeamId: Int, secondTeamId: Int) {
         val h2h = "$firstTeamId-$secondTeamId"
         viewModelScope.launch(Dispatchers.Default) {
             _lastTen.emit(headToHeadRepository.getHeadToHead(h2h))
             _thisSeason.emit(headToHeadRepository.getHeadToHeadThisSeason(h2h))
             _lastSeason.emit(headToHeadRepository.getHeadToHeadLastSeason(h2h))
-            isDataFetched =  true
+            isDataFetched = true
             combine(
                 _lastSeason,
                 _thisSeason,

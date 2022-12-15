@@ -6,6 +6,7 @@ data class GoalDto(
     val total: Int? = null,
     val assists: Int? = null
 )
+
 fun GoalDto.dtoToDomain(): Goal {
     return Goal(
         total = this.total,

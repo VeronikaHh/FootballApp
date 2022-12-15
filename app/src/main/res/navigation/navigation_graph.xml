@@ -21,5 +21,7 @@
         android:id="@+id/settings"
         android:name="com.example.holovanova_football.fragment.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <deepLink app:uri="app://football/settings"/>
+    </fragment>
 </navigation>

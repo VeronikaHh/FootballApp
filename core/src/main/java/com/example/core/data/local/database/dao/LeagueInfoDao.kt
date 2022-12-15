@@ -18,5 +18,5 @@ interface LeagueInfoDao {
     fun getAll(): List<LeagueInfoEntity>
 
     @Query("SELECT * FROM LeagueInfoEntity WHERE league Like league")
-    fun getTeamById(league: LeagueEntity): LeagueInfoEntity
+    fun getLeagueInfo(league: LeagueEntity): LeagueInfoEntity
 }

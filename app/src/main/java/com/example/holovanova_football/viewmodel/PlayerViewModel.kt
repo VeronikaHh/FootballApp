@@ -28,7 +28,6 @@ class PlayerViewModel @Inject constructor(
     val data: StateFlow<PlayerFragmentData>
         get() = _data
 
-
     fun collectFlow(player: Int, team: Int) {
         viewModelScope.launch {
             _transfer.value = transferRepository.getTransfers(player)

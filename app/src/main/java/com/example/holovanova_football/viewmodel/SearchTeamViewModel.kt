@@ -34,7 +34,7 @@ class SearchTeamViewModel @Inject constructor(
 }
 
 sealed interface SearchState {
-    object Empty: SearchState
+    object Empty : SearchState
     object Loading : SearchState
     data class Selected(val teams: List<Teams>) : SearchState
 }

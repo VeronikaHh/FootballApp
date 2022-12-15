@@ -7,5 +7,6 @@ import androidx.room.Entity
 data class LeagueInfoEntity(
     var league: LeagueEntity? = null,
     var country: CountryEntity? = null,
+    //maybe better it be just string
     var seasons: List<SeasonEntity>? = null
 )

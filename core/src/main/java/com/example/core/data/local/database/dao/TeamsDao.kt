@@ -7,13 +7,13 @@ import com.example.core.data.local.model.TeamsEntity
 @Dao
 interface TeamsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(teamStatisticsEntity: TeamsEntity)
+    fun insert(teamsEntity: TeamsEntity)
 
     @Update
-    fun update(teamStatisticsEntity: TeamsEntity)
+    fun update(teamsEntity: TeamsEntity)
 
     @Delete
-    fun delete(teamStatisticsEntity: TeamsEntity)
+    fun delete(teamsEntity: TeamsEntity)
 
     @Query("SELECT * FROM TeamsEntity")
     fun getAll(): List<TeamsEntity>

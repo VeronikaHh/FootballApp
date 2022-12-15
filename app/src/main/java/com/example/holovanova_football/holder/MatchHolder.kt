@@ -18,13 +18,15 @@ class MatchHolder(
             binding.firstTeamName.text = it.name
             binding.firstTeamLogo.load(it.logo)
         }
+
         h2h.teams?.away?.let {
             binding.secondTeamName.text = it.name
             binding.secondTeamLogo.load(it.logo)
         }
+
         h2h.fixture?.status?.let {
             binding.matchStatus.text = it.long
-            binding.matchTime.text = "${it.elapsed?: 0}`"
+            binding.matchTime.text = "${it.elapsed ?: 0}`"
         }
 
         h2h.score?.fulltime?.let {
@@ -35,9 +37,10 @@ class MatchHolder(
         binding.date.text = h2h.fixture?.date?.let { parseDate(it) }
 
         h2h.fixture?.venue?.let {
-            binding.venueAddress.text = it.city?:""
+            binding.venueAddress.text = it.city ?: ""
         }
-        binding.referee.text = h2h.fixture?.referee?:""
+
+        binding.referee.text = h2h.fixture?.referee ?: ""
     }
 
     private fun parseDate(date: String): String {

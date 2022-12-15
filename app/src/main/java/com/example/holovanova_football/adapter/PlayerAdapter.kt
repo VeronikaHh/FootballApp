@@ -34,7 +34,7 @@ class PlayerAdapter(
 
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            val playerId = players[position].id ?:return@setOnClickListener
+            val playerId = players[position].id ?: return@setOnClickListener
             onClickListener(playerId)
         }
         holder.bind(players[position])

@@ -11,7 +11,7 @@ import com.example.holovanova_football.util.TeamDiffUtil
 
 class TeamAdapter(
     private val onClickListener: (teamId: Int) -> Unit
-): RecyclerView.Adapter<TeamHolder>() {
+) : RecyclerView.Adapter<TeamHolder>() {
 
     private var teams = mutableListOf<Team>()
 
@@ -24,17 +24,17 @@ class TeamAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamHolder {
         val binding =
-        TeamRvItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+            TeamRvItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         return TeamHolder(binding)
     }
 
     override fun onBindViewHolder(holder: TeamHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            val teamId = teams[position].id ?:return@setOnClickListener
+            val teamId = teams[position].id ?: return@setOnClickListener
             onClickListener(teamId)
         }
         holder.bind(teams[position])

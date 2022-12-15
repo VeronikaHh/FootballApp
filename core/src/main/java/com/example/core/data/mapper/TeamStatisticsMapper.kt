@@ -15,7 +15,7 @@ class TeamStatisticsMapper @Inject constructor(
 ) :
     Mapper<TeamStatisticsDto, TeamEntity, TeamStatistics> {
     override fun entityToDomain(entity: TeamEntity): TeamStatistics {
-        return gson.fromJson(entity.statistics,TeamStatistics::class.java)
+        return gson.fromJson(entity.statistics, TeamStatistics::class.java)
     }
 
     override fun dtoToDomain(dto: TeamStatisticsDto): TeamStatistics {

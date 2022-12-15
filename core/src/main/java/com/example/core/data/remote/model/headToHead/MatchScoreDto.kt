@@ -5,10 +5,10 @@ import com.example.core.data.remote.model.statistics.dtoToDomain
 import com.example.core.domain.model.MatchScore
 
 data class MatchScoreDto(
-    val halftime: ScoreDto?=null,
-    val fulltime: ScoreDto?=null,
-    val extratime: ScoreDto?=null,
-    val penalty: ScoreDto?=null,
+    val halftime: ScoreDto? = null,
+    val fulltime: ScoreDto? = null,
+    val extratime: ScoreDto? = null,
+    val penalty: ScoreDto? = null,
 )
 
 fun MatchScoreDto.dtoToDomain(): MatchScore {

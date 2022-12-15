@@ -9,7 +9,7 @@ import javax.inject.Inject
 class PlayerTransfersMapper @Inject constructor(
     private val transferMapper: TransferMapper,
     private val playerMapper: PlayerMapper
-) : Mapper<PlayerTransfersDto,PlayerTransfersEntity, PlayerTransfers> {
+) : Mapper<PlayerTransfersDto, PlayerTransfersEntity, PlayerTransfers> {
     override fun entityToDomain(entity: PlayerTransfersEntity): PlayerTransfers {
         return PlayerTransfers(
             player = entity.player?.let(playerMapper::entityToDomain),

@@ -14,7 +14,7 @@ class HeadToHeadMapper @Inject constructor(
     private val matchTeamsMapper: MatchTeamsMapper,
     private val leagueMapper: LeagueMapper,
     private val gson: Gson
-): Mapper<HeadToHeadDto, HeadToHeadEntity, HeadToHead> {
+) : Mapper<HeadToHeadDto, HeadToHeadEntity, HeadToHead> {
     override fun entityToDomain(entity: HeadToHeadEntity): HeadToHead {
         return HeadToHead(
             fixture = gson.fromJson(entity.fixture, Fixture::class.java),
@@ -26,11 +26,11 @@ class HeadToHeadMapper @Inject constructor(
     }
 
     override fun dtoToDomain(dto: HeadToHeadDto): HeadToHead {
-        return  HeadToHead(
+        return HeadToHead(
             fixture = dto.fixture?.dtoToDomain(venueMapper),
             league = dto.league?.let(leagueMapper::dtoToDomain),
             teams = dto.teams?.let(matchTeamsMapper::dtoToDomain),
-            goals =  dto.goals?.dtoToDomain(),
+            goals = dto.goals?.dtoToDomain(),
             score = dto.score?.dtoToDomain()
         )
     }

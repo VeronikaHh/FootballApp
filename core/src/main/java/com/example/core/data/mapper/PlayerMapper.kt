@@ -7,7 +7,8 @@ import com.example.core.domain.model.Player
 import javax.inject.Inject
 
 
-class PlayerMapper @Inject constructor() : Mapper<PlayerDto, PlayerEntity, Player> {
+class PlayerMapper @Inject constructor(
+) : Mapper<PlayerDto, PlayerEntity, Player> {
 
     override fun domainToEntity(domain: Player): PlayerEntity {
         return PlayerEntity(
