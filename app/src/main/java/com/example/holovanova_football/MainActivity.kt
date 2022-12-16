@@ -1,5 +1,6 @@
 package com.example.holovanova_football
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
@@ -21,14 +22,13 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setupWithNavController(navController)
+    }
 
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val result = providesTeamService(provideRetrofit()).fetchTeamStatistics(2021,33,39)
-//            val result2 = providesTeamService(provideRetrofit()).fetchTeams(33)
-//            val result3 = providesPlayerService(provideRetrofit()).fetchPlayers(33)
-//            Log.d("data", result.toString())
-//            Log.d("team", result2.toString())
-//            Log.d("player", result3.toString())
-//        }
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        navController.handleDeepLink(intent)
     }
 }

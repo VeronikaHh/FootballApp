@@ -6,6 +6,7 @@ data class CardDto(
     val yellow: Int? = null,
     val red: Int? = null
 )
+
 fun CardDto.dtoToDomain(): Card {
     return Card(
         yellow = this.yellow,

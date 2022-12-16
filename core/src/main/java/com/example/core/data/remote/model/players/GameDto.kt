@@ -6,6 +6,7 @@ data class GameDto(
     val position: String? = null,
     val rating: Double? = null,
 )
+
 fun GameDto.dtoToDomain(): Game {
     return Game(
         position = this.position,

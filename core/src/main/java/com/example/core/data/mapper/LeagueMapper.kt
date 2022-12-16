@@ -6,7 +6,8 @@ import com.example.core.domain.mapper.Mapper
 import com.example.core.domain.model.League
 import javax.inject.Inject
 
-class LeagueMapper @Inject constructor() : Mapper<LeagueDto, LeagueEntity, League> {
+class LeagueMapper @Inject constructor(
+) : Mapper<LeagueDto, LeagueEntity, League> {
     override fun entityToDomain(entity: LeagueEntity): League {
         return League(
             id = entity.id,

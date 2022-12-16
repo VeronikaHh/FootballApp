@@ -1,8 +1,6 @@
 package com.example.core.data.local.database
 
-import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.core.data.local.model.*
 
 //@Database(
 //    entities = [
@@ -14,7 +12,13 @@ import com.example.core.data.local.model.*
 //        PlayerSquadEntity::class,
 //        LeagueInfoEntity::class,
 //        CountryEntity::class,
-//        SeasonEntity::class
+//        SeasonEntity::class,
+//        TransferEntity::class,
+//        TransferTeamEntity::class,
+//        PlayerTransfersEntity::class,
+//        PlayerStatisticsEntity::class,
+//        HeadToHeadEntity::class,
+//        MatchTeamsEntity::class
 //    ], version = 1
 //)
 abstract class FootballDatabase : RoomDatabase() {

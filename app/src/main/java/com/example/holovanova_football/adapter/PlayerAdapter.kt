@@ -10,7 +10,7 @@ import com.example.holovanova_football.holder.PlayerHolder
 import com.example.holovanova_football.util.PlayerDiffUtil
 
 class PlayerAdapter(
-    private val onClickListener: (Player) -> Unit
+    private val onClickListener: (playerId: Int) -> Unit
 ) : RecyclerView.Adapter<PlayerHolder>() {
 
     private var players = mutableListOf<Player>()
@@ -34,7 +34,8 @@ class PlayerAdapter(
 
     override fun onBindViewHolder(holder: PlayerHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            onClickListener(players[position])
+            val playerId = players[position].id ?: return@setOnClickListener
+            onClickListener(playerId)
         }
         holder.bind(players[position])
     }

@@ -1,6 +1,5 @@
 package com.example.holovanova_football.viewmodel
 
-import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.data.repository.PlayerRepository
@@ -12,7 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
-import java.util.ListResourceBundle
 import javax.inject.Inject
 
 
@@ -22,19 +20,19 @@ class PlayerViewModel @Inject constructor(
     private val playerRepository: PlayerRepository
 ) : ViewModel() {
 
-    var isDataFetched = false
-    private val _transfer = MutableStateFlow<PlayerTransfers>(PlayerTransfers())
-    private val _playerStatistics = MutableStateFlow<PlayerStatistics>(PlayerStatistics())
+    private val _transfer = MutableStateFlow(PlayerTransfers())
+    private val _playerStatistics = MutableStateFlow(PlayerStatistics())
 
-    private val _data = MutableStateFlow<PlayerFragmentData>(PlayerFragmentData())
+    var isDataFetched = false
+    private val _data = MutableStateFlow(PlayerFragmentData())
     val data: StateFlow<PlayerFragmentData>
         get() = _data
-
 
     fun collectFlow(player: Int, team: Int) {
         viewModelScope.launch {
             _transfer.value = transferRepository.getTransfers(player)
             _playerStatistics.value = playerRepository.getPlayerStatistics(player, team)
+            isDataFetched = true
             combine(_playerStatistics, _transfer) { playerStatistics, transfer ->
                 _data.value = data.value.copy(
                     transfer = transfer,
@@ -43,6 +41,5 @@ class PlayerViewModel @Inject constructor(
                 )
             }.collect()
         }
-        isDataFetched = true
     }
 }

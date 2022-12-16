@@ -11,13 +11,14 @@ class PlayerRepository @Inject constructor(
     private val playerRemoteDataSource: PlayerRemoteDataSource,
     private val mapper: PlayerSquadMapper,
     private val statisticsMapper: PlayerStatisticsMapper
-){
+) {
     suspend fun getPlayerSquad(teamId: Int): PlayerSquad {
         val playerSquad = playerRemoteDataSource.fetchPlayers(
             teamId = teamId
         )
         return mapper.dtoToDomain(playerSquad.response[0])
     }
+
     suspend fun getPlayerStatistics(id: Int, team: Int): PlayerStatistics {
         val playerStatistics = playerRemoteDataSource.fetchPlayerStatistics(
             id = id,

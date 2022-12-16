@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/lobbyFragment"
-        android:icon="@drawable/lobby_selector"
-        android:title="@string/lobby_fragment"/>
+        android:id="@+id/compare"
+        android:icon="@drawable/h2h_selector"
+        android:title="@string/compare_fragment"/>
     <item
-        android:id="@+id/ratingFragment"
-        android:icon="@drawable/rating_selector"
-        android:title="@string/rating_fragment"/>
-    <item
-        android:id="@+id/favoriteFragment"
+        android:id="@+id/favorite"
         android:icon="@drawable/favorite_selector"
         android:title="@string/favorite_fragment"/>
     <item
-        android:id="@+id/settingsFragment"
+        android:id="@+id/settings"
         android:icon="@drawable/settings_selector"
         android:title="@string/settings_fragment"/>
 </menu>

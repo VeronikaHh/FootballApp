@@ -13,7 +13,7 @@ class TeamRepository @Inject constructor(
     private val remoteDataSource: TeamRemoteDataSource,
     private val teamStatisticsMapper: TeamStatisticsMapper,
     private val teamsMapper: TeamsMapper
-){
+) {
     suspend fun getTeamStatistics(teamId: Int): TeamStatistics? {
         val league = leagueRemoteDataSource.fetchLeagues(
             teamId = teamId,
@@ -22,7 +22,7 @@ class TeamRepository @Inject constructor(
         val team = league.response[0].league?.id?.let {
             remoteDataSource.fetchTeamStatistics(
                 teamId = teamId,
-                leagueId = it//TODO from league
+                leagueId = it
             )
         }
         return team?.let { teamStatisticsMapper.dtoToDomain(it.response) }
@@ -35,5 +35,12 @@ class TeamRepository @Inject constructor(
             id = teamId
         )
         return teamsMapper.dtoToDomain(teams.response[0])
+    }
+
+    suspend fun searchTeam(search: String): List<Teams> {
+        val teams = remoteDataSource.fetchTeams(
+            search = search
+        )
+        return teams.response.map(teamsMapper::dtoToDomain)
     }
 }

@@ -1,9 +1,6 @@
 package com.example.core.di
 
-import com.example.core.data.remote.service.LeagueService
-import com.example.core.data.remote.service.TeamService
-import com.example.core.data.remote.service.PlayerService
-import com.example.core.data.remote.service.TransferService
+import com.example.core.data.remote.service.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +24,7 @@ object NetworkModule {
                 val builder = chain.request().newBuilder()
                 builder.header("x-rapidapi-host", "v3.football.api-sports.io")
                 builder.header("x-rapidapi-key", "dd0226de9135c65688994e14cb09d2d5")
-//                builder.header("x-rapidapi-key", "107709187e5b165902913ced3e5d4aa0")
+//                builder.header("x-rapidapi-key", "b65af41717428ec82387208d196ae1cb")
                 return@Interceptor chain.proceed(builder.build())
             }
         )
@@ -59,5 +56,9 @@ object NetworkModule {
     @Provides
     fun providesTransferService(retrofit: Retrofit): TransferService {
         return retrofit.create(TransferService::class.java)
+    }
+    @Provides
+    fun providesHeadToHeadService(retrofit: Retrofit): HeadToHeadService {
+        return retrofit.create(HeadToHeadService::class.java)
     }
 }

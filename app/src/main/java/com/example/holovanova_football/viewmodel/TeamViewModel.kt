@@ -5,6 +5,7 @@ import com.example.core.data.repository.PlayerRepository
 import com.example.core.data.repository.TeamRepository
 import com.example.core.domain.model.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,24 +17,22 @@ class TeamViewModel @Inject constructor(
     private val playerRepository: PlayerRepository
 ) : ViewModel() {
 
-    var isDataFetched = false
-    private val _playerSquad = MutableStateFlow<PlayerSquad>(PlayerSquad())
-    private val _team = MutableStateFlow<Teams>(Teams())
+    private val _playerSquad = MutableStateFlow(PlayerSquad())
+    private val _team = MutableStateFlow(Teams())
     private val _teamStatistics = MutableStateFlow<TeamStatistics?>(TeamStatistics())
 
-    private val _data = MutableStateFlow<TeamFragmentData>(TeamFragmentData())
+    var isDataFetched = false
+    private val _data = MutableStateFlow(TeamFragmentData())
+
     val data: StateFlow<TeamFragmentData>
         get() = _data
 
-    init {
-        collectFlow()
-    }
-
-    private fun collectFlow() {
-        viewModelScope.launch {
-            _playerSquad.value = playerRepository.getPlayerSquad(33)
-            _team.value = teamRepository.getTeam(33)
-            _teamStatistics.value = teamRepository.getTeamStatistics(33)
+    fun collectFlow(team: Int) {
+        viewModelScope.launch(Dispatchers.Default) {
+            _playerSquad.value = playerRepository.getPlayerSquad(team)
+            _team.value = teamRepository.getTeam(team)
+            _teamStatistics.value = teamRepository.getTeamStatistics(team)
+            isDataFetched = true
             combine(_team, _teamStatistics, _playerSquad) { team, teamStatistics, playerSquad ->
                 _data.value = data.value.copy(
                     team = team,
@@ -42,6 +41,5 @@ class TeamViewModel @Inject constructor(
                 )
             }.collect()
         }
-        isDataFetched = true
     }
 }

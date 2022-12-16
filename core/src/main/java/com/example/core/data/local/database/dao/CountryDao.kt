@@ -17,5 +17,5 @@ interface CountryDao {
     fun getAll(): List<CountryEntity>
 
     @Query("SELECT * FROM CountryEntity WHERE name Like name")
-    fun getSeasonByYear(name: String): CountryEntity
+    fun getCountryByName(name: String): CountryEntity
 }

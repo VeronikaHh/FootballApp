@@ -18,5 +18,5 @@ interface LeagueDao {
     fun getAll(): List<LeagueEntity>
 
     @Query("SELECT * FROM LeagueEntity WHERE id Like id")
-    fun getTeamById(id: Int): LeagueEntity
+    fun getLeagueById(id: Int): LeagueEntity
 }

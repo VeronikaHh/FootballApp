@@ -6,8 +6,7 @@ import javax.inject.Inject
 
 class TeamLocalDataSource @Inject constructor(
     private val teamDao: TeamDao,
-    private val teamsDao: TeamsDao,
-
+    private val teamsDao: TeamsDao
 ) {
 
 }

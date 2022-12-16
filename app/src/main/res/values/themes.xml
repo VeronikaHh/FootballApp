@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.Football" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/lightBlue</item>
-        <item name="android:statusBarColor">@color/lightBlue</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="android:statusBarColor">@color/blue</item>
         <item name="android:textColor">@color/cyanide</item>
     </style>
     <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -49,6 +49,29 @@
         <item name="textAllCaps">true</item>
         <item name="android:textColor">@color/white</item>
     </style>
+    <style name="MatchFont" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/regular_karantina</item>
+        <item name="fontFamily">@font/regular_karantina</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textScaleX">1.2</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="MatchScoreFont" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/bold_karantina</item>
+        <item name="fontFamily">@font/bold_karantina</item>
+        <item name="android:textSize">40sp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="MatchItemFont" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/bold_karantina</item>
+        <item name="fontFamily">@font/bold_karantina</item>
+        <item name="android:textScaleX">1.2</item>
+        <item name="android:textSize">20sp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
     <style name="PlayerFontRegular" parent="@android:style/TextAppearance.Small">
         <item name="android:fontFamily">@font/regular_karantina</item>
         <item name="fontFamily">@font/regular_karantina</item>
@@ -60,6 +83,7 @@
     <style name="StrekItemFont" parent="@android:style/TextAppearance.Small">
         <item name="android:fontFamily">@font/regular_karantina</item>
         <item name="fontFamily">@font/regular_karantina</item>
+        <item name="android:textScaleX">1.2</item>
         <item name="android:textSize">20sp</item>
         <item name="textAllCaps">true</item>
         <item name="android:textColor">@color/white</item>
@@ -82,5 +106,49 @@
     </style>
     <style name="ImageView.Round" parent="">
         <item name="cornerSize">50%</item>
+    </style>
+    <style name="ButtonCustomStyle" parent="Widget.MaterialComponents.Button">
+        <item name="colorButtonNormal">@color/blue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/regular_karantina</item>
+        <item name="fontFamily">@font/regular_karantina</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Rounded</item>
+        <item name="android:textSize">20sp</item>
+        <item name="textAllCaps">true</item>
+    </style>
+    <style name="ButtonCompareStyle" parent="Widget.MaterialComponents.Button">
+        <item name="colorButtonNormal">@color/blue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/bold_karantina</item>
+        <item name="fontFamily">@font/bold_karantina</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Rounded</item>
+        <item name="android:textSize">25sp</item>
+        <item name="textAllCaps">true</item>
+        <item name="rippleColor">@color/gray</item>
+    </style>
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">7dp</item>
+    </style>
+    <style name="SettingFont" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/bold_karantina</item>
+        <item name="fontFamily">@font/bold_karantina</item>
+        <item name="android:textSize">30sp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="HintFontStyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/regular_karantina</item>
+        <item name="fontFamily">@font/regular_karantina</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textScaleX">1.2</item>
+        <item name="hintEnabled">true</item>
+        <item name="hintTextColor">@color/cyanide</item>
+        <item name="android:textColorHint">@color/cyanide</item>
+        <item name="searchHintIcon">@drawable/ic_search</item>
+        <item name="iconGravity">end</item>
+        <item name="expandedHintEnabled">true</item>
+        <item name="queryHint">@string/search_hint</item>
+        <item name="textAllCaps">true</item>
     </style>
 </resources>

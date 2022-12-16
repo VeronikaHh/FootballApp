@@ -10,7 +10,7 @@ interface LeagueService {
     @GET("leagues")
     suspend fun fetchLeagues(
         @Query("id") leagueId: Int,
-        ): Response<List<LeagueInfoDto>>
+    ): Response<List<LeagueInfoDto>>
 
     @GET("leagues")
     suspend fun fetchLeagues(

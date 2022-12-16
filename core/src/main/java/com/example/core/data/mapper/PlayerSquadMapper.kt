@@ -9,8 +9,7 @@ import javax.inject.Inject
 class PlayerSquadMapper @Inject constructor(
     private val teamMapper: TeamMapper,
     private val playerMapper: PlayerMapper
-) :
-    Mapper<PlayerSquadDto, PlayerSquadEntity, PlayerSquad> {
+) : Mapper<PlayerSquadDto, PlayerSquadEntity, PlayerSquad> {
     override fun entityToDomain(entity: PlayerSquadEntity): PlayerSquad {
         return PlayerSquad(
             team = entity.team?.let(teamMapper::entityToDomain),
