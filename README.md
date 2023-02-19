@@ -11,9 +11,7 @@ Example of deep link for:
  - player screen - app.com/football/player/player=276/team=85
  - head to head(compare two teams) screen - app.com/football/h2h/firstTeamId=541/secondTeamId=529
 Splash screen
-
-
-Compare screen(clicable views which navigate to search screen, button is not active until user choose two teams to compare)
+Compare screen(clicable views which navigate to search team screen, button is not active until user choose two teams to compare)
 
 <img width="135" alt="compare" src="https://user-images.githubusercontent.com/74206053/219856276-5ccf97f8-3ac3-4da5-8e2d-26df13741ab5.png">
 
@@ -21,6 +19,8 @@ Search team
 
 <img width="189" alt="search" src="https://user-images.githubusercontent.com/74206053/219856469-e6d48c7d-2780-47c7-8fc9-84be97329e15.png">
 <img width="188" alt="cmppng" src="https://user-images.githubusercontent.com/74206053/219856516-724a9691-17ae-40a5-aa40-b29ed0dac4ba.png">
+After user choosed 2 teams to compare button is active 
+
 <img width="186" alt="2" src="https://user-images.githubusercontent.com/74206053/219856548-5346ff26-ce18-4057-9b59-5861f676f2c7.png">
 
 After pressing "compare" button, go to head to head screen, where we see statistcs for matchet between these team
