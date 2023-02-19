@@ -13,7 +13,7 @@ Example of deep link for:
 Splash screen
 
 
-Compare screen
+Compare screen(clicable views which navigate to search screen, button is not active until user choose two teams to compare)
 
 <img width="135" alt="compare" src="https://user-images.githubusercontent.com/74206053/219856276-5ccf97f8-3ac3-4da5-8e2d-26df13741ab5.png">
 
