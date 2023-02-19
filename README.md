@@ -6,11 +6,13 @@ Mutli module app, MVVM+clean architecture.
 API: https://www.api-football.com/documentation-v3
 Using Retrofit for network, Hilt for DI, Room for local database.
 
-Example of deep link for:
+Example of deep links for:
  - team screen - app.com/football/team/teamId=541
  - player screen - app.com/football/player/player=276/team=85
  - head to head(compare two teams) screen - app.com/football/h2h/firstTeamId=541/secondTeamId=529
-Splash screen
+ 
+Application has a splash screen, after that user see compare screen  as deafoult.
+
 Compare screen(clicable views which navigate to search team screen, button is not active until user choose two teams to compare)
 
 <img width="135" alt="compare" src="https://user-images.githubusercontent.com/74206053/219856276-5ccf97f8-3ac3-4da5-8e2d-26df13741ab5.png">
