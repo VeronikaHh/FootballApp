@@ -1,5 +1,5 @@
-Football application(single activity).
-Mutli module app, MVVM+clean architecture.
+#Football application
+#Mutli module app, MVVM+clean architecture.
 
 <img width="776" alt="architecture" src="https://user-images.githubusercontent.com/74206053/219855707-3acc52c8-7325-4250-a918-a73e1760724b.png">
 
